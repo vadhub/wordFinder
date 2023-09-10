@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.abg.wordfinder.model.Word;
 import com.abg.wordfinder.view.WordSearchView;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     private WordSearchView wordsGrid;
@@ -28,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
             "ABCDEFGHIJ".toCharArray()
     };
 
+    private String[] words = {
+            "WORD",
+            "SOMOP",
+            "SEARCHING",
+            "FOG"
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
         wordsGrid = findViewById(R.id.wordsGrid);
 
-        wordsGrid.setLetters(letters);
+        wordsGrid.setLetters(WordField.get2dWordField(10));
+
+
 
         wordsGrid.setWords(
-                new Word("WORD", false, 3, 3, 6, 6),
-                new Word("SOME", false, 8, 3, 8, 6),
-                new Word("SEARCHING", false, 0, 1, 8, 1),
-                new Word("FOG", false, 3, 5, 5, 3));
+                new Word(words[0], false, 3, 3, 6, 6),
+                new Word(words[1], false, 8, 3, 8, 7),
+                new Word(words[2], false, 0, 1, 8, 1),
+                new Word(words[3], false, 3, 5, 5, 3));
 
         wordsGrid.setOnWordSearchedListener(new WordSearchView.OnWordSearchedListener() {
             @Override
