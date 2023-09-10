@@ -15,4 +15,32 @@ public class WordField {
 
         return field;
     }
+
+//    public static char[][] placeWordInField() {
+//        placeWordHorizontally();
+//    }
+
+    public static char[][] placeWordHorizontally(char[][] board, String word, int x, int y) {
+        for (int i = 0; i < word.length(); i++) {
+            if (y + i >= board[x].length) {
+                // fail ... edge of board
+            } else {
+                board[x][y + i] = word.charAt(i);
+            }
+        }
+
+        return board;
+    }
+
+    public static char[][] placeWordVertically(char[][] board, String word, int x, int y) {
+        for (int i = 0; i < word.length(); i++) {
+            if (x + i >= board[x].length) {
+                // fail ... edge of board
+            } else {
+                board[x + i][y] = word.charAt(i);
+            }
+        }
+
+        return board;
+    }
 }
