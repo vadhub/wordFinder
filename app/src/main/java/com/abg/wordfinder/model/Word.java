@@ -1,14 +1,24 @@
 package com.abg.wordfinder.model;
 
+import androidx.annotation.NonNull;
+
 public class Word {
 
     private String word;
-    private boolean highlighted;
+    private boolean highlighted = false;
     private int fromRow, fromColumn, toRow, toColumn;
 
     public Word(String word, boolean highlighted, int fromRow, int fromColumn, int toRow, int toColumn) {
         this.word = word;
         this.highlighted = highlighted;
+        this.fromRow = fromRow;
+        this.fromColumn = fromColumn;
+        this.toRow = toRow;
+        this.toColumn = toColumn;
+    }
+
+    public Word(String word, int fromRow, int fromColumn, int toRow, int toColumn) {
+        this.word = word;
         this.fromRow = fromRow;
         this.fromColumn = fromColumn;
         this.toRow = toRow;
@@ -61,6 +71,14 @@ public class Word {
 
     public void setHighlighted(boolean highlighted) {
         this.highlighted = highlighted;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "word: '" + word + '\'' +
+                " start: [" + fromRow + ", " + fromColumn +"]; "+
+                "end: [" + toRow + ", " + toColumn + ']';
     }
 }
 

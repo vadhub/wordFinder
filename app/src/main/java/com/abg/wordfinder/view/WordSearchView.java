@@ -7,22 +7,25 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.core.view.MotionEventCompat;
 
+import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
+
+import java.util.List;
 
 public class WordSearchView extends View {
 
     private int rows;
     private int columns;
     private int width;
-    private int height;
 
     private char[][] letters;
-    private Word[] words;
+    private List<Word> words;
 
     private Cell[][] cells;
     private Cell cellDragFrom, cellDragTo;
@@ -40,6 +43,85 @@ public class WordSearchView extends View {
     public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        final int pointerIndex = MotionEventCompat.getActionIndex(event);
+        final float x = MotionEventCompat.getX(event, pointerIndex);
+        final float y = MotionEventCompat.getY(event, pointerIndex);
+
+//        Log.d("WordsGrid", "x:" + x + ", y:" + y);
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            cellDragFrom = getCell(x, y);
+            cellDragTo = cellDragFrom;
+            invalidate();
+        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            Cell cell = getCell(x, y);
+            if (cell != null && isFromToValid(cellDragFrom, cell)) {
+                cellDragTo = cell;
+                invalidate();
+            }
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//            Log.d("WordsGrid", getWordStr(cellDragFrom, cellDragTo));
+            String word = getWordStr(cellDragFrom, cellDragTo);
+            highlightIfContain(word);
+            cellDragFrom = null;
+            cellDragTo = null;
+            invalidate();
+            return false;
+        }
+        return true;
+    }
+
+    public void setLetters(char[][] letters) {
+        this.letters = letters;
+        rows = letters.length;
+        columns = letters[0].length;
+        initCells();
+        invalidate();
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.typeface = typeface;
+        textPaint.setTypeface(typeface);
+        invalidate();
+    }
+
+    public interface OnWordSearchedListener {
+        void wordFound(String word);
+    }
+
+    public void setOnWordSearchedListener(OnWordSearchedListener onWordSearchedListener) {
+        this.onWordSearchedListener = onWordSearchedListener;
+    }
+
+    public void setWords(List<Word> words) {
+        this.words = words;
+    }
+
+    private boolean isFromToValid(Cell cellDragFrom, Cell cellDragTo) {
+
+        if (cellDragFrom == null) {
+            return false;
+        }
+
+        return (Math.abs(cellDragFrom.getRow() - cellDragTo.getRow()) == Math.abs(cellDragFrom.getColumn() - cellDragTo.getColumn()))
+                || cellDragFrom.getRow() == cellDragTo.getRow() || cellDragFrom.getColumn() == cellDragTo.getColumn();
+    }
+
+    private Cell getCell(float x, float y) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (cells[i][j].getRect().contains((int) x, (int) y)) {
+                    return cells[i][j];
+                }
+            }
+        }
+        return null;
     }
 
     private void init() {
@@ -91,7 +173,7 @@ public class WordSearchView extends View {
         }
 
         // draw highlighter
-        if (cellDragFrom != null && cellDragTo != null && isFromToValid(cellDragFrom, cellDragTo)) {
+        if (isFromToValid(cellDragFrom, cellDragTo)) {
 //            highlighterPaint.setColor(highlighterColors[wordsSearched]);
             canvas.drawLine(cellDragFrom.getRect().centerX(), cellDragFrom.getRect().centerY(),
                     cellDragTo.getRect().centerX() + 1, cellDragTo.getRect().centerY(), highlighterPaint);
@@ -119,8 +201,6 @@ public class WordSearchView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         width = w;
-        height = h;
-
         initCells();
     }
 
@@ -150,125 +230,6 @@ public class WordSearchView extends View {
         return result;
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        final int pointerIndex = MotionEventCompat.getActionIndex(event);
-        final float x = MotionEventCompat.getX(event, pointerIndex);
-        final float y = MotionEventCompat.getY(event, pointerIndex);
-
-//        Log.d("WordsGrid", "x:" + x + ", y:" + y);
-
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            cellDragFrom = getCell(x, y);
-            cellDragTo = cellDragFrom;
-            invalidate();
-        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            Cell cell = getCell(x, y);
-            if (cellDragFrom != null && cell != null && isFromToValid(cellDragFrom, cell)) {
-                cellDragTo = cell;
-                invalidate();
-            }
-        } else if (event.getAction() == MotionEvent.ACTION_UP) {
-//            Log.d("WordsGrid", getWordStr(cellDragFrom, cellDragTo));
-            String word = getWordStr(cellDragFrom, cellDragTo);
-            highlightIfContain(word);
-            cellDragFrom = null;
-            cellDragTo = null;
-            invalidate();
-            return false;
-        }
-        return true;
-    }
-
-    private Cell getCell(float x, float y) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (cells[i][j].getRect().contains((int) x, (int) y)) {
-                    return cells[i][j];
-                }
-            }
-        }
-        return null;
-    }
-
-    public void setLetters(char[][] letters) {
-        this.letters = letters;
-        rows = letters.length;
-        columns = letters[0].length;
-        initCells();
-        invalidate();
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.typeface = typeface;
-        textPaint.setTypeface(typeface);
-        invalidate();
-    }
-
-    private boolean isFromToValid(Cell cellDragFrom, Cell cellDragTo) {
-        return (Math.abs(cellDragFrom.getRow() - cellDragTo.getRow()) == Math.abs(cellDragFrom.getColumn() - cellDragTo.getColumn()))
-                || cellDragFrom.getRow() == cellDragTo.getRow() || cellDragFrom.getColumn() == cellDragTo.getColumn();
-    }
-
-    private static class Cell {
-        private Rect rect;
-        private char letter;
-        private int rowIndex, columnIndex;
-
-        public Cell(Rect rect, char letter, int rowIndex, int columnIndex) {
-            this.rect = rect;
-            this.letter = letter;
-            this.rowIndex = rowIndex;
-            this.columnIndex = columnIndex;
-        }
-
-        public Rect getRect() {
-            return rect;
-        }
-
-        public void setRect(Rect rect) {
-            this.rect = rect;
-        }
-
-        public char getLetter() {
-            return letter;
-        }
-
-        public void setLetter(char letter) {
-            this.letter = letter;
-        }
-
-        public int getRow() {
-            return rowIndex;
-        }
-
-        public void setRow(int row) {
-            this.rowIndex = row;
-        }
-
-        public int getColumn() {
-            return columnIndex;
-        }
-
-        public void setColumn(int column) {
-            this.columnIndex = column;
-        }
-    }
-
-    public interface OnWordSearchedListener {
-        void wordFound(String word);
-    }
-
-    public void setOnWordSearchedListener(OnWordSearchedListener onWordSearchedListener) {
-        this.onWordSearchedListener = onWordSearchedListener;
-    }
-
-    public void setWords(Word... words) {
-        this.words = words;
-    }
-
     private String getWordStr(Cell from, Cell to) {
         StringBuilder word = new StringBuilder();
         if (from.getRow() == to.getRow()) {
@@ -296,6 +257,7 @@ public class WordSearchView extends View {
     }
 
     private void highlightIfContain(String str) {
+        Log.d("ssd", str);
         for (Word word : words) {
             if (word.getWord().equals(str)) {
                 if (onWordSearchedListener != null) {
