@@ -13,7 +13,7 @@ public class WordSearchGenerator {
     private final String[] words;
     private final List<Word> coordinates;
     private final boolean[][] occupied;
-    private char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
+    private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
 
     public WordSearchGenerator(int rows, int cols, String[] words) {
         this.board = new char[rows][cols];
@@ -92,7 +92,7 @@ public class WordSearchGenerator {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
-                    board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
+                    board[i][j] = '-';//russianAlphabet[random.nextInt(russianAlphabet.length)];
                 }
             }
         }

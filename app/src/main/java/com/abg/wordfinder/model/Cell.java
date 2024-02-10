@@ -45,4 +45,14 @@ public class Cell {
     public void setColumn(int column) {
         this.columnIndex = column;
     }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "rect=" + rect +
+                ", letter=" + letter +
+                ", rowIndex=" + rowIndex +
+                ", columnIndex=" + columnIndex +
+                '}';
+    }
 }

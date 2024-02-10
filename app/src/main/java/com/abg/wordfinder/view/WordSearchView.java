@@ -168,7 +168,7 @@ public class WordSearchView extends View {
                 @SuppressLint("DrawAllocation") Rect textBounds = new Rect();
                 textPaint.getTextBounds(letter, 0, 1, textBounds);
                 canvas.drawText(letter, cells[i][j].getRect().centerX() - (textPaint.measureText(letter) / 2),
-                        cells[i][j].getRect().centerY() + (textBounds.height() / 2), textPaint);
+                        cells[i][j].getRect().centerY() + ((float) textBounds.height() / 2), textPaint);
             }
         }
 
@@ -232,6 +232,8 @@ public class WordSearchView extends View {
 
     private String getWordStr(Cell from, Cell to) {
         StringBuilder word = new StringBuilder();
+        boolean reverse = false;
+
         if (from.getRow() == to.getRow()) {
             int c = Math.min(from.getColumn(), to.getColumn());
             for (int i = 0; i < Math.abs(from.getColumn() - to.getColumn()) + 1; i++) {
@@ -243,21 +245,42 @@ public class WordSearchView extends View {
                 word.append(cells[i + r][to.getColumn()].getLetter());
             }
         } else {
+
             if (from.getRow() > to.getRow()) {
                 Cell cell = from;
                 from = to;
                 to = cell;
+
+                if (from.getColumn() > to.getColumn()) {
+                 /*
+                  ------
+                  ----e-
+                  ---2--
+                  --s---
+                 */
+                    reverse = true;
+                }
+
+                if (from.getColumn() < to.getColumn()) {
+                    /* s - start, e - end touch
+                    ------
+                    ----s-
+                    ---2--
+                    --e---
+                 */
+                    reverse = true;
+                }
             }
+
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 int foo = from.getColumn() < to.getColumn() ? i : -i;
                 word.append(cells[from.getRow() + i][from.getColumn() + foo].getLetter());
             }
         }
-        return word.toString();
+        return reverse ? word.reverse().toString() : word.toString();
     }
 
     private void highlightIfContain(String str) {
-        Log.d("ssd", str);
         for (Word word : words) {
             if (word.getWord().equals(str)) {
                 if (onWordSearchedListener != null) {
