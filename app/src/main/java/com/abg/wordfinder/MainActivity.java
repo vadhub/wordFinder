@@ -2,20 +2,23 @@ package com.abg.wordfinder;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 
 import com.abg.wordfinder.model.Word;
 import com.abg.wordfinder.view.WordSearchView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -26,14 +29,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        String[] words = {"василий", "андроид", "java", "анонимус", "cell", "fog", "long"};
+        String[] temp = getResources().getStringArray(R.array.words);
+
+        List<String> words = new ArrayList<>(10);
+
+        for (int i = 0; i < 10; i++) {
+            String s = temp[(int) (Math.random() * temp.length)];
+            if (!words.contains(s)) {
+                words.add(s);
+            }
+
+        }
+
         Map<String, TextView> map = new HashMap<>();
 
         WordSearchGenerator wordSearchGenerator = new WordSearchGenerator(10, 10, words);
 
-        wordSearchGenerator.generateBoard();
+        wordSearchGenerator.generateBoard("EN");
         wordSearchGenerator.printBoard();
 
         for (Word c: wordSearchGenerator.getWords()) {
@@ -57,5 +74,13 @@ public class MainActivity extends AppCompatActivity {
         wordsGrid.setOnWordSearchedListener(word -> {
             Objects.requireNonNull(map.get(word)).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.settings) {
+
+        }
+        return true;
     }
 }

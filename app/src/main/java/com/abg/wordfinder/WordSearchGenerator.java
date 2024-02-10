@@ -10,20 +10,20 @@ import java.util.Random;
 
 public class WordSearchGenerator {
     private final char[][] board;
-    private final String[] words;
+    private final List<String> words;
     private final List<Word> coordinates;
     private final boolean[][] occupied;
     private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
     private final char[] englishAlphabet = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
 
-    public WordSearchGenerator(int rows, int cols, String[] words) {
+    public WordSearchGenerator(int rows, int cols, List<String> words) {
         this.board = new char[rows][cols];
         this.words = words;
         this.occupied = new boolean[rows][cols];
-        this.coordinates = new ArrayList<>(words.length);
+        this.coordinates = new ArrayList<>(words.size());
     }
 
-    public void generateBoard() {
+    public void generateBoard(String locale) {
         Random random = new Random();
 
         for (String word : words) {
@@ -57,7 +57,7 @@ public class WordSearchGenerator {
             }
         }
 
-        fillEmptyCellsRandomly(random);
+        fillEmptyCellsRandomly(random, locale);
     }
 
     public List<Word> getWords() {
@@ -89,11 +89,17 @@ public class WordSearchGenerator {
         return true;
     }
 
-    private void fillEmptyCellsRandomly(Random random) {
+    private void fillEmptyCellsRandomly(Random random, String locale) {
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
-                    board[i][j] = '-';//russianAlphabet[random.nextInt(russianAlphabet.length)];
+
+                    if (locale.equals("RU")) {
+                        board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
+                    } else if (locale.equals("EN")) {
+                        board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
+                    }
                 }
             }
         }

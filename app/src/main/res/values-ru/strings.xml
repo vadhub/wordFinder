@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wordFinder</string>
+    <string-array name="words">
+        <item>яблоко</item>
+        <item>телефон</item>
+        <item>дерево</item>
+        <item>рука</item>
+        <item>голова</item>
+        <item>человек</item>
+        <item>кошка</item>
+        <item>страна</item>
+        <item>земля</item>
+        <item>планета</item>
+        <item>стол</item>
+        <item>стул</item>
+        <item>суп</item>
+        <item>плита</item>
+        <item>кухня</item>
+        <item>дом</item>
+        <item>лось</item>
+        <item>квартира</item>
+        <item>небо</item>
+        <item>слонце</item>
+        <item>люди</item>
+        <item>общество</item>
+        <item>общество</item>
+    </string-array>
+</resources>

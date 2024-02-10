@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">wordFinder</string>
+    <string name="wordfinder">WordFinder</string>
+    <string name="settings">settings</string>
+    <string-array name="words">
+        <item>apple</item>
+        <item>phone</item>
+        <item>tree</item>
+        <item>hand</item>
+        <item>head</item>
+        <item>person</item>
+        <item>cat</item>
+        <item>country</item>
+        <item>ground</item>
+        <item>planet</item>
+        <item>table</item>
+        <item>chair</item>
+        <item>soup</item>
+        <item>slab</item>
+        <item>kitchen</item>
+        <item>house</item>
+        <item>elk</item>
+        <item>apartment</item>
+        <item>sky</item>
+        <item>elephant</item>
+        <item>people</item>
+        <item>society</item>
+        <item>society</item>
+    </string-array>
 </resources>
