@@ -3,6 +3,7 @@ package com.abg.wordfinder.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
 
 import java.util.List;
+import java.util.Random;
 
 public class WordSearchView extends View {
 
@@ -29,6 +31,7 @@ public class WordSearchView extends View {
 
     private Cell[][] cells;
     private Cell cellDragFrom, cellDragTo;
+    private int color; //highlighter
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -38,7 +41,7 @@ public class WordSearchView extends View {
 
     private OnWordSearchedListener onWordSearchedListener;
     private int wordsSearched = 0;
-    private int[] highlighterColors = {0x4400649C, 0x44ffd900, 0x447fbb00};
+    private final int[] highlighterColors = {0x4400649C, 0x44ffd900, 0x447fbb00};
 
     public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -57,6 +60,12 @@ public class WordSearchView extends View {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             cellDragFrom = getCell(x, y);
+
+            color = Color.argb(100, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+            highlighterPaint.setColor(color);
+
+            Log.d("keke", highlighterPaint.getColor() +" ");
+
             cellDragTo = cellDragFrom;
             invalidate();
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -138,7 +147,6 @@ public class WordSearchView extends View {
         highlighterPaint.setStyle(Paint.Style.STROKE);
         highlighterPaint.setStrokeWidth(110);
         highlighterPaint.setStrokeCap(Paint.Cap.ROUND);
-        highlighterPaint.setColor(0x4400649C);
 
         gridLinePaint.setStyle(Paint.Style.STROKE);
         gridLinePaint.setStrokeWidth(4);
@@ -174,18 +182,17 @@ public class WordSearchView extends View {
 
         // draw highlighter
         if (isFromToValid(cellDragFrom, cellDragTo)) {
-//            highlighterPaint.setColor(highlighterColors[wordsSearched]);
             canvas.drawLine(cellDragFrom.getRect().centerX(), cellDragFrom.getRect().centerY(),
                     cellDragTo.getRect().centerX() + 1, cellDragTo.getRect().centerY(), highlighterPaint);
         }
 
         for (Word word : words) {
             if (word.isHighlighted()) {
-                canvas.drawLine(
-                        cells[word.getFromRow()][word.getFromColumn()].getRect().centerX(),
-                        cells[word.getFromRow()][word.getFromColumn()].getRect().centerY(),
-                        cells[word.getToRow()][word.getToColumn()].getRect().centerX() + 1,
-                        cells[word.getToRow()][word.getToColumn()].getRect().centerY(), highlighterPaint);
+                highlighterPaint.setColor(word.getColor());
+                Rect from = cells[word.getFromRow()][word.getFromColumn()].getRect();
+                Rect to = cells[word.getToRow()][word.getToColumn()].getRect();
+                canvas.drawLine(from.centerX(), from.centerY(), to.centerX() + 1, to.centerY(), highlighterPaint);
+                highlighterPaint.setColor(color);
             }
         }
     }
@@ -287,6 +294,7 @@ public class WordSearchView extends View {
                     onWordSearchedListener.wordFound(str);
                 }
                 word.setHighlighted(true);
+                word.setColor(color);
                 wordsSearched++;
                 break;
             }

@@ -7,6 +7,7 @@ public class Word {
     private String word;
     private boolean highlighted = false;
     private int fromRow, fromColumn, toRow, toColumn;
+    private int color;
 
     public Word(String word, boolean highlighted, int fromRow, int fromColumn, int toRow, int toColumn) {
         this.word = word;
@@ -23,6 +24,14 @@ public class Word {
         this.fromColumn = fromColumn;
         this.toRow = toRow;
         this.toColumn = toColumn;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public int getFromRow() {

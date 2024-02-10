@@ -14,6 +14,7 @@ public class WordSearchGenerator {
     private final List<Word> coordinates;
     private final boolean[][] occupied;
     private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
+    private final char[] englishAlphabet = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
 
     public WordSearchGenerator(int rows, int cols, String[] words) {
         this.board = new char[rows][cols];
