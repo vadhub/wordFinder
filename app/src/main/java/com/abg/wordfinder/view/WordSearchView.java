@@ -64,8 +64,6 @@ public class WordSearchView extends View {
             color = Color.argb(100, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
             highlighterPaint.setColor(color);
 
-            Log.d("keke", highlighterPaint.getColor() +" ");
-
             cellDragTo = cellDragFrom;
             invalidate();
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -101,7 +99,7 @@ public class WordSearchView extends View {
     }
 
     public interface OnWordSearchedListener {
-        void wordFound(String word);
+        void wordFound(String word, int wordSearchCount);
     }
 
     public void setOnWordSearchedListener(OnWordSearchedListener onWordSearchedListener) {
@@ -259,7 +257,7 @@ public class WordSearchView extends View {
                 to = cell;
 
                 if (from.getColumn() > to.getColumn()) {
-                 /*
+                 /* s - start, e - end touch
                   ------
                   ----e-
                   ---2--
@@ -271,9 +269,9 @@ public class WordSearchView extends View {
                 if (from.getColumn() < to.getColumn()) {
                     /* s - start, e - end touch
                     ------
-                    ----s-
-                    ---2--
                     --e---
+                    ---2--
+                    ----s-
                  */
                     reverse = true;
                 }
@@ -291,11 +289,11 @@ public class WordSearchView extends View {
         for (Word word : words) {
             if (word.getWord().equals(str)) {
                 if (onWordSearchedListener != null) {
-                    onWordSearchedListener.wordFound(str);
+                    wordsSearched++;
+                    onWordSearchedListener.wordFound(str, wordsSearched);
                 }
                 word.setHighlighted(true);
                 word.setColor(color);
-                wordsSearched++;
                 break;
             }
         }

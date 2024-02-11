@@ -1,5 +1,6 @@
 package com.abg.wordfinder;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,16 +65,17 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = new TextView(this);
             textView.setTextSize(25);
             textView.setTextColor(Color.WHITE);
-            textView.setText(s);
-            linearForText.addView(textView);
             map.put(s, textView);
+            textView.setText(s.substring(0, 1).toUpperCase() + s.substring(1));
+            linearForText.addView(textView);
         }
 
         WordSearchView wordsGrid = findViewById(R.id.wordsGrid);
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
-        wordsGrid.setOnWordSearchedListener(word -> {
-            Objects.requireNonNull(map.get(word)).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        wordsGrid.setOnWordSearchedListener((word, wordSearchCount)  -> {
+            Objects.requireNonNull(map.get(word.toUpperCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+
         });
     }
 
@@ -88,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
             createDialog();
         } else if (item.getItemId() == R.id.hint) {
 
+        } else if (item.getItemId() == R.id.refresh) {
+
         }
+
         return true;
     }
 

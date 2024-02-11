@@ -5,6 +5,7 @@
     <string name="change_lang">change language</string>
     <string name="english" translatable="false">English</string>
     <string name="lang_ru" translatable="false">Русский</string>
+    <string name="refresh" translatable="false">refresh</string>
     <string-array name="words">
         <item>apple</item>
         <item>phone</item>

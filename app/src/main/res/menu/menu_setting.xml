@@ -5,8 +5,13 @@
     <item
         android:id="@+id/hint"
         android:icon="@drawable/emoji_objects_fill0_wght400_grad0_opsz24"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="@string/hint" />
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/refresh_fill0_wght400_grad0_opsz24"
+        app:showAsAction="ifRoom"
+        android:title="@string/refresh" />
 
     <item
         android:id="@+id/settings"

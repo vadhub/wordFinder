@@ -13,8 +13,8 @@ public class WordSearchGenerator {
     private final List<String> words;
     private final List<Word> coordinates;
     private final boolean[][] occupied;
-    private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toCharArray();
-    private final char[] englishAlphabet = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+    private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toUpperCase().toCharArray();
+    private final char[] englishAlphabet = "qwertyuiopasdfghjklzxcvbnm".toUpperCase().toCharArray();
 
     public WordSearchGenerator(int rows, int cols, List<String> words) {
         this.board = new char[rows][cols];
@@ -106,6 +106,8 @@ public class WordSearchGenerator {
     }
 
     private void placeWord(String word, int row, int col, int rowDir, int colDir) {
+
+       word = word.toUpperCase();
 
         int rowEnd = 0;
         int colEnd = 0;

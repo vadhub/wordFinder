@@ -101,4 +101,5 @@
     </string-array>
     <string name="settings">настройки</string>
     <string name="hint">подсказка</string>
+    <string name="change_lang">изменение языка</string>
 </resources>
