@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wordFinder</string>
+    <string name="app_name">find the word</string>
     <string name="settings">settings</string>
     <string name="hint">hint</string>
     <string name="change_lang">change language</string>
