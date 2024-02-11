@@ -83,10 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void generateWord() {
         words = null;
-        words = new ArrayList<>(10);
-        for (int i = 0; i < 10; i++) {
+        words = new ArrayList<>(20);
+        for (int i = 0; i < 20; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
-            Log.d("sss", s.length()+"");
             if (!words.contains(s) && s.length() < row) {
                 words.add(s);
             }
@@ -100,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void generateTextView() {
         linearForText = findViewById(R.id.linearForText);
+        linearForText.removeAllViews();
         map = null;
         map = new HashMap<>();
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             if (wordSearchCount == words.size()) {
 
             }
-            Objects.requireNonNull(map.get(word.toUpperCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            Objects.requireNonNull(map.get(word.toLowerCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
 
         });
     }
