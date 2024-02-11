@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -34,6 +35,8 @@ public class WordSearchView extends View {
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint hintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Word hintWord;
 
     private Typeface typeface;
 
@@ -83,6 +86,16 @@ public class WordSearchView extends View {
 
     public void refresh() {
         wordsSearched = 0;
+    }
+
+    public void hint() {
+        for (Word word : words) {
+            if (!word.isHighlighted()) {
+                highlightHint(word);
+                Log.d("ddd", word.getWord());
+                return;
+            }
+        }
     }
 
     public void setLetters(char[][] letters) {
@@ -146,6 +159,12 @@ public class WordSearchView extends View {
         highlighterPaint.setStrokeWidth(110);
         highlighterPaint.setStrokeCap(Paint.Cap.ROUND);
 
+        hintPaint.setStyle(Paint.Style.STROKE);
+        hintPaint.setStrokeWidth(110);
+        hintPaint.setStrokeCap(Paint.Cap.ROUND);
+        int hintColor = 0x220098FF;
+        hintPaint.setColor(hintColor);
+
         gridLinePaint.setStyle(Paint.Style.STROKE);
         gridLinePaint.setStrokeWidth(4);
         gridLinePaint.setStrokeCap(Paint.Cap.SQUARE);
@@ -182,6 +201,13 @@ public class WordSearchView extends View {
         if (isFromToValid(cellDragFrom, cellDragTo)) {
             canvas.drawLine(cellDragFrom.getRect().centerX(), cellDragFrom.getRect().centerY(),
                     cellDragTo.getRect().centerX() + 1, cellDragTo.getRect().centerY(), highlighterPaint);
+        }
+
+        if (hintWord != null) {
+            Log.d("rrr", "draw");
+            Rect from1 = cells[hintWord.getFromRow()][hintWord.getFromColumn()].getRect();
+            Rect to2 = cells[hintWord.getToRow()][hintWord.getToColumn()].getRect();
+            canvas.drawLine(from1.centerX(), from1.centerY(), to2.centerX() + 1, to2.centerY(), hintPaint);
         }
 
         for (Word word : words) {
@@ -297,6 +323,12 @@ public class WordSearchView extends View {
                 break;
             }
         }
+    }
+
+    private void highlightHint(Word word) {
+        hintWord = word;
+        invalidate();
+       // hintWord = null;
     }
 }
 

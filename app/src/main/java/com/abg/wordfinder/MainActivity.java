@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         if (item.getItemId() == R.id.settings) {
             createDialog();
         } else if (item.getItemId() == R.id.hint) {
-
+            wordsGrid.hint();
         } else if (item.getItemId() == R.id.refresh) {
             setUpWordSearch();
         }

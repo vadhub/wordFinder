@@ -103,7 +103,7 @@ public class WordSearchGenerator {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
-//                    board[i][j] = ' '; for test, to make it easier :)
+//                    board[i][j] = ' '; // for test, to make it easier :)
                     if (locale.equals("ru")) {
                         board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
                     } else {
