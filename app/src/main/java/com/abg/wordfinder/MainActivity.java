@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -25,13 +26,23 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    private WordSearchGenerator wordSearchGenerator;
+    private WordSearchView wordsGrid;
+    private Map<String, TextView> map;
+    private Configuration configuration;
+    private LinearLayout linearForText;
+    private List<String> words;
+    private String[] temp;
+    private final int row = 10;
+    private final int col = 10;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Configuration configuration = new Configuration(this);
+        configuration = new Configuration(this);
         LocaleChange.setLocale(this, configuration.getLocale());
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
@@ -39,44 +50,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        String[] temp = getResources().getStringArray(R.array.words);
+        temp = getResources().getStringArray(R.array.words);
+        wordsGrid = findViewById(R.id.wordsGrid);
 
-        int row = 10;
-        int col = 10;
+        setUpWordSearch();
 
-        List<String> words = new ArrayList<>(10);
-
-        for (int i = 0; i < 10; i++) {
-            String s = temp[(int) (Math.random() * temp.length)];
-            if (!words.contains(s) && s.length() < row) {
-                words.add(s);
-            }
-
-        }
-
-        Map<String, TextView> map = new HashMap<>();
-
-        WordSearchGenerator wordSearchGenerator = new WordSearchGenerator(row, col, words);
-        wordSearchGenerator.generateBoard(configuration.getLocale());
-
-        LinearLayout linearForText = findViewById(R.id.linearForText);
-
-        for (String s : words) {
-            TextView textView = new TextView(this);
-            textView.setTextSize(25);
-            textView.setTextColor(Color.WHITE);
-            map.put(s, textView);
-            textView.setText(s.substring(0, 1).toUpperCase() + s.substring(1));
-            linearForText.addView(textView);
-        }
-
-        WordSearchView wordsGrid = findViewById(R.id.wordsGrid);
-        wordsGrid.setLetters(wordSearchGenerator.getBoard());
-        wordsGrid.setWords(wordSearchGenerator.getWords());
-        wordsGrid.setOnWordSearchedListener((word, wordSearchCount)  -> {
-            Objects.requireNonNull(map.get(word.toUpperCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-
-        });
     }
 
     @Override
@@ -92,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.hint) {
 
         } else if (item.getItemId() == R.id.refresh) {
-
+            setUpWordSearch();
         }
 
         return true;
@@ -101,5 +79,55 @@ public class MainActivity extends AppCompatActivity {
     private void createDialog() {
         SettingsDialogFragment settingsDialogFragment = new SettingsDialogFragment();
         settingsDialogFragment.show(this.getSupportFragmentManager(), "DialogFragment");
+    }
+
+    private void generateWord() {
+        words = null;
+        words = new ArrayList<>(10);
+        for (int i = 0; i < 10; i++) {
+            String s = temp[(int) (Math.random() * temp.length)];
+            Log.d("sss", s.length()+"");
+            if (!words.contains(s) && s.length() < row) {
+                words.add(s);
+            }
+
+        }
+
+        wordSearchGenerator = new WordSearchGenerator(row, col, words);
+        wordSearchGenerator.generateBoard(configuration.getLocale());
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void generateTextView() {
+        linearForText = findViewById(R.id.linearForText);
+        map = null;
+        map = new HashMap<>();
+
+        for (String s : words) {
+            TextView textView = new TextView(this);
+            textView.setTextSize(25);
+            textView.setTextColor(Color.WHITE);
+            map.put(s, textView);
+            textView.setText(s.substring(0, 1).toUpperCase() + s.substring(1));
+            linearForText.addView(textView);
+        }
+    }
+
+    private void setSearchWord() {
+        wordsGrid.setLetters(wordSearchGenerator.getBoard());
+        wordsGrid.setWords(wordSearchGenerator.getWords());
+        wordsGrid.setOnWordSearchedListener((word, wordSearchCount)  -> {
+            if (wordSearchCount == words.size()) {
+
+            }
+            Objects.requireNonNull(map.get(word.toUpperCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+
+        });
+    }
+
+    private void setUpWordSearch() {
+        generateWord();
+        generateTextView();
+        setSearchWord();
     }
 }
