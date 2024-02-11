@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -18,6 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.abg.wordfinder.datasource.Configuration;
 import com.abg.wordfinder.view.WordSearchView;
+import com.yandex.mobile.ads.banner.BannerAdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
+        mBanner.setAdUnitId("R-M-5962296-1");
+        mBanner.setAdSize(getAdSize(mBanner));
 
         configuration = new Configuration(this);
         LocaleChange.setLocale(this, configuration.getLocale());
@@ -75,6 +82,21 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         }
 
         return true;
+    }
+
+    private BannerAdSize getAdSize(BannerAdView mBanner) {
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int adWidthPixels = mBanner.getWidth();
+
+        if (adWidthPixels == 0) {
+            // If the ad hasn't been laid out, default to the full screen width
+            adWidthPixels = displayMetrics.widthPixels;
+        }
+
+        int adWidth = Math.round(adWidthPixels / displayMetrics.density);
+        return BannerAdSize.stickySize(this, adWidth);
+
     }
 
     private void createDialog() {

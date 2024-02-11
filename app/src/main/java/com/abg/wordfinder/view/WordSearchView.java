@@ -208,6 +208,7 @@ public class WordSearchView extends View {
             Rect from1 = cells[hintWord.getFromRow()][hintWord.getFromColumn()].getRect();
             Rect to2 = cells[hintWord.getToRow()][hintWord.getToColumn()].getRect();
             canvas.drawLine(from1.centerX(), from1.centerY(), to2.centerX() + 1, to2.centerY(), hintPaint);
+            hintWord = null;
         }
 
         for (Word word : words) {
