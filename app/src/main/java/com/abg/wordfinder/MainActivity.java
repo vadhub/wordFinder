@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             Log.d("ddd", wordSearchCount +" " + wordSearchGenerator.getWords().size());
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 createDialogWin();
+                wordsGrid.refresh();
             }
             TextView v = map.get(word.toLowerCase());
             v.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
