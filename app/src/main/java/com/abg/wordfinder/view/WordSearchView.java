@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -18,7 +17,6 @@ import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
 
 import java.util.List;
-import java.util.Random;
 
 public class WordSearchView extends View {
 
@@ -41,7 +39,6 @@ public class WordSearchView extends View {
 
     private OnWordSearchedListener onWordSearchedListener;
     private int wordsSearched = 0;
-    private final int[] highlighterColors = {0x4400649C, 0x44ffd900, 0x447fbb00};
 
     public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -144,7 +141,6 @@ public class WordSearchView extends View {
         if (typeface != null) {
             textPaint.setTypeface(typeface);
         }
-//        textPaint.setAlpha(foregroundOpacity);
 
         highlighterPaint.setStyle(Paint.Style.STROKE);
         highlighterPaint.setStrokeWidth(110);
