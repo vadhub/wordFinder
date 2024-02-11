@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,31 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIconTint="@color/white"
         app:menu="@menu/menu_setting"
+        app:navigationIconTint="@color/white"
         app:titleTextColor="@color/white" />
 
-
-    <FrameLayout
+    <ScrollView
+        android:paddingTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/blue">
+        android:background="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/wordsGrid"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
+
         <LinearLayout
-            android:scrollbars="vertical"
             android:id="@+id/linearForText"
-            android:orientation="vertical"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <com.abg.wordfinder.view.WordSearchView
+        android:id="@+id/wordsGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/wordsGrid"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

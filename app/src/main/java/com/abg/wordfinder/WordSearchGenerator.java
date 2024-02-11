@@ -1,7 +1,5 @@
 package com.abg.wordfinder;
 
-import android.util.Log;
-
 import com.abg.wordfinder.model.Word;
 
 import java.util.ArrayList;
@@ -12,15 +10,19 @@ public class WordSearchGenerator {
     private final char[][] board;
     private final List<String> words;
     private final List<Word> coordinates;
+    private final List<String> wordsApply;
     private final boolean[][] occupied;
+    private final Listener listener;
     private final char[] russianAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя".toUpperCase().toCharArray();
     private final char[] englishAlphabet = "qwertyuiopasdfghjklzxcvbnm".toUpperCase().toCharArray();
 
-    public WordSearchGenerator(int rows, int cols, List<String> words) {
+    public WordSearchGenerator(int rows, int cols, List<String> words, Listener listener) {
         this.board = new char[rows][cols];
         this.words = words;
         this.occupied = new boolean[rows][cols];
         this.coordinates = new ArrayList<>(words.size());
+        this.listener = listener;
+        this.wordsApply = new ArrayList<>();
     }
 
     public void generateBoard(String locale) {
@@ -62,7 +64,7 @@ public class WordSearchGenerator {
                 }
             }
         }
-
+        listener.generated(wordsApply);
         fillEmptyCellsRandomly(random, locale);
 
     }
@@ -101,12 +103,12 @@ public class WordSearchGenerator {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
-
-                    if (locale.equals("ru")) {
-                        board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
-                    } else {
-                        board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
-                    }
+                    board[i][j] = ' ';
+//                    if (locale.equals("ru")) {
+//                        board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
+//                    } else {
+//                        board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
+//                    }
                 }
             }
         }
@@ -128,7 +130,12 @@ public class WordSearchGenerator {
             occupied[rowEnd][colEnd] = true;
         }
 
+        wordsApply.add(word);
         coordinates.add(new Word(word, row, col, rowEnd, colEnd));
 
+    }
+
+    public interface Listener {
+        void generated(List<String> words);
     }
 }

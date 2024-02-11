@@ -102,4 +102,6 @@
     <string name="settings">настройки</string>
     <string name="hint">подсказка</string>
     <string name="change_lang">изменение языка</string>
+    <string name="you_win">Вы выиграли!</string>
+    <string name="restart">Рестарт?</string>
 </resources>

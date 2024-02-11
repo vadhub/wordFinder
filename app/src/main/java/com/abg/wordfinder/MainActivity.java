@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener {
 
     private WordSearchGenerator wordSearchGenerator;
     private WordSearchView wordsGrid;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Configuration configuration;
     private LinearLayout linearForText;
     private List<String> words;
+    private List<String> wordsApply = new ArrayList<>(); // possiblewords
     private String[] temp;
     private final int row = 10;
     private final int col = 10;
@@ -81,9 +82,15 @@ public class MainActivity extends AppCompatActivity {
         settingsDialogFragment.show(this.getSupportFragmentManager(), "DialogFragment");
     }
 
+    private void createDialogWin() {
+        WinDialogFragment winDialogFragment = new WinDialogFragment();
+        winDialogFragment.setListener(this);
+        winDialogFragment.show(this.getSupportFragmentManager(), "WinFragment");
+    }
+
     private void generateWord() {
         words = null;
-        words = new ArrayList<>(20);
+        words = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
             if (!words.contains(s) && s.length() < row) {
@@ -92,18 +99,19 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        wordSearchGenerator = new WordSearchGenerator(row, col, words);
+        wordSearchGenerator = new WordSearchGenerator(row, col, words, this);
         wordSearchGenerator.generateBoard(configuration.getLocale());
     }
 
     @SuppressLint("SetTextI18n")
-    private void generateTextView() {
+    private void generateTextView(List<String> words) {
         linearForText = findViewById(R.id.linearForText);
         linearForText.removeAllViews();
         map = null;
         map = new HashMap<>();
 
         for (String s : words) {
+            s = s.toLowerCase();
             TextView textView = new TextView(this);
             textView.setTextSize(25);
             textView.setTextColor(Color.WHITE);
@@ -117,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount)  -> {
-            if (wordSearchCount == words.size()) {
-
+            if (wordSearchCount == wordSearchGenerator.getWords().size()) {
+                createDialogWin();
             }
             Objects.requireNonNull(map.get(word.toLowerCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
 
@@ -127,7 +135,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpWordSearch() {
         generateWord();
-        generateTextView();
+    }
+
+    @Override
+    public void generated(List<String> words) {
+        generateTextView(words);
         setSearchWord();
+    }
+
+    @Override
+    public void restart() {
+        setUpWordSearch();
     }
 }
