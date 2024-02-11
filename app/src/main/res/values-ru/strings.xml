@@ -98,6 +98,15 @@
         <item>овощь</item>
         <item>звук</item>
         <item>текст</item>
+        <item>семья</item>
+        <item>сын</item>
+        <item>дочь</item>
+        <item>отец</item>
+        <item>студент</item>
+        <item>сок</item>
+        <item>князь</item>
+        <item>ток</item>
+        <item>бумага</item>
     </string-array>
     <string name="settings">настройки</string>
     <string name="hint">подсказка</string>

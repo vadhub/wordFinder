@@ -105,5 +105,14 @@
         <item>vegetable</item>
         <item>sound</item>
         <item>text</item>
+        <item>family</item>
+        <item>son</item>
+        <item>daughter</item>
+        <item>father</item>
+        <item>student</item>
+        <item>juice</item>
+        <item>prince</item>
+        <item>current</item>
+        <item>paper</item>
     </string-array>
 </resources>
