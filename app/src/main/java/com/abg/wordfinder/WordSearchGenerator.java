@@ -33,7 +33,7 @@ public class WordSearchGenerator {
         for (String word : words) {
             boolean wordPlaced = false;
             while (!wordPlaced) {
-                int direction = random.nextInt(4); // 0 - горизонтально, 1 - вертикально, 2 - диагонально вниз, 3 - диагонально вверх
+                int direction = random.nextInt(4); // 0 - horizontal, 1 - vertical, 2 - diagonal down, 3 - diagonal up
                 int startRow = random.nextInt(board.length);
                 int startCol = random.nextInt(board[0].length);
 
@@ -103,12 +103,12 @@ public class WordSearchGenerator {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
-                    board[i][j] = ' ';
-//                    if (locale.equals("ru")) {
-//                        board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
-//                    } else {
-//                        board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
-//                    }
+//                    board[i][j] = ' '; for test, to make it easier :)
+                    if (locale.equals("ru")) {
+                        board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
+                    } else {
+                        board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
+                    }
                 }
             }
         }
