@@ -21,9 +21,84 @@
         <item>лось</item>
         <item>квартира</item>
         <item>небо</item>
-        <item>слонце</item>
+        <item>слон</item>
         <item>люди</item>
         <item>общество</item>
-        <item>общество</item>
+        <item>собака</item>
+        <item>клавиатура</item>
+        <item>компьютер</item>
+        <item>сосед</item>
+        <item>буква</item>
+        <item>солнце</item>
+        <item>континент</item>
+        <item>фильм</item>
+        <item>сериал</item>
+        <item>правительство</item>
+        <item>государство</item>
+        <item>правитель</item>
+        <item>диван</item>
+        <item>мышь</item>
+        <item>сыр</item>
+        <item>помидор</item>
+        <item>огурец</item>
+        <item>окно</item>
+        <item>телевизор</item>
+        <item>число</item>
+        <item>волосы</item>
+        <item>кран</item>
+        <item>стакан</item>
+        <item>самолет</item>
+        <item>листок</item>
+        <item>снег</item>
+        <item>дождь</item>
+        <item>облако</item>
+        <item>колесо</item>
+        <item>машина</item>
+        <item>двигатель</item>
+        <item>руль</item>
+        <item>плов</item>
+        <item>экран</item>
+        <item>номер</item>
+        <item>буква</item>
+        <item>кубик</item>
+        <item>уж</item>
+        <item>камера</item>
+        <item>кресло</item>
+        <item>вода</item>
+        <item>воздух</item>
+        <item>огонь</item>
+        <item>стена</item>
+        <item>потолок</item>
+        <item>деньги</item>
+        <item>реклама</item>
+        <item>забор</item>
+        <item>дверь</item>
+        <item>стекло</item>
+        <item>очки</item>
+        <item>часы</item>
+        <item>время</item>
+        <item>слово</item>
+        <item>книга</item>
+        <item>почта</item>
+        <item>музыка</item>
+        <item>видео</item>
+        <item>фотография</item>
+        <item>лопата</item>
+        <item>лес</item>
+        <item>крыша</item>
+        <item>лошадь</item>
+        <item>потолок</item>
+        <item>лестница</item>
+        <item>бег</item>
+        <item>мяч</item>
+        <item>ручка</item>
+        <item>цвет</item>
+        <item>карта</item>
+        <item>фрукт</item>
+        <item>овощь</item>
+        <item>звук</item>
+        <item>текст</item>
     </string-array>
+    <string name="settings">настройки</string>
+    <string name="hint">подсказка</string>
 </resources>

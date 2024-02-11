@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">wordFinder</string>
-    <string name="wordfinder">WordFinder</string>
     <string name="settings">settings</string>
     <string name="hint">hint</string>
+    <string name="change_lang">change language</string>
+    <string name="english" translatable="false">English</string>
+    <string name="lang_ru" translatable="false">Русский</string>
     <string-array name="words">
         <item>apple</item>
         <item>phone</item>
@@ -27,5 +29,78 @@
         <item>people</item>
         <item>society</item>
         <item>society</item>
+        <item>dog</item>
+        <item>keyboard</item>
+        <item>computer</item>
+        <item>neighbor</item>
+        <item>letter</item>
+        <item>sun</item>
+        <item>continent</item>
+        <item>film</item>
+        <item>serial</item>
+        <item>government</item>
+        <item>state</item>
+        <item>ruler</item>
+        <item>sofa</item>
+        <item>mouse</item>
+        <item>cheese</item>
+        <item>tomato</item>
+        <item>cucumber</item>
+        <item>window</item>
+        <item>TV</item>
+        <item>number</item>
+        <item>hair</item>
+        <item>faucet</item>
+        <item>glass</item>
+        <item>airplane</item>
+        <item>leaf</item>
+        <item>snow</item>
+        <item>rain</item>
+        <item>cloud</item>
+        <item>wheel</item>
+        <item>car</item>
+        <item>engine</item>
+        <item>pilaf</item>
+        <item>screen</item>
+        <item>number</item>
+        <item>letter</item>
+        <item>cube</item>
+        <item>already</item>
+        <item>camera</item>
+        <item>chair</item>
+        <item>water</item>
+        <item>air</item>
+        <item>fire</item>
+        <item>wall</item>
+        <item>ceiling</item>
+        <item>money</item>
+        <item>advertising</item>
+        <item>fence</item>
+        <item>door</item>
+        <item>glass</item>
+        <item>glasses</item>
+        <item>clock</item>
+        <item>time</item>
+        <item>word</item>
+        <item>book</item>
+        <item>mail</item>
+        <item>music</item>
+        <item>video</item>
+        <item>photo</item>
+        <item>shovel</item>
+        <item>forest</item>
+        <item>roof</item>
+        <item>horse</item>
+        <item>ceiling</item>
+        <item>ladder</item>
+        <item>running</item>
+        <item>ball</item>
+        <item>handle</item>
+        <item>color</item>
+        <item>map</item>
+        <item>fruit</item>
+        <item>vegetable</item>
+        <item>sound</item>
+        <item>text</item>
     </string-array>
 </resources>
