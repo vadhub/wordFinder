@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -116,8 +117,11 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             textView.setTextColor(Color.WHITE);
             map.put(s, textView);
             textView.setText(s.substring(0, 1).toUpperCase() + s.substring(1));
+            textView.setGravity(Gravity.CENTER);
             linearForText.addView(textView);
         }
+
+        Log.d("ed", map.size()+"");
     }
 
     private void setSearchWord() {
@@ -128,7 +132,9 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 createDialogWin();
             }
-            Objects.requireNonNull(map.get(word.toLowerCase())).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            TextView v = map.get(word.toLowerCase());
+            v.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            v.setTextColor(Color.GRAY);
 
         });
     }
