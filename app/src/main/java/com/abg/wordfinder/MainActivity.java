@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         WordSearchGenerator wordSearchGenerator = new WordSearchGenerator(10, 10, words);
 
-        wordSearchGenerator.generateBoard("EN");
+        wordSearchGenerator.generateBoard("RU");
         wordSearchGenerator.printBoard();
 
         for (Word c: wordSearchGenerator.getWords()) {
@@ -74,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
         wordsGrid.setOnWordSearchedListener(word -> {
             Objects.requireNonNull(map.get(word)).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_setting, menu);
+        return true;
     }
 
     @Override
