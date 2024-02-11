@@ -26,6 +26,8 @@ public class WordSearchGenerator {
     public void generateBoard(String locale) {
         Random random = new Random();
 
+        long timeStart = System.currentTimeMillis();
+
         for (String word : words) {
             boolean wordPlaced = false;
             while (!wordPlaced) {
@@ -54,10 +56,15 @@ public class WordSearchGenerator {
                         wordPlaced = true;
                     }
                 }
+
+                if (System.currentTimeMillis()-timeStart > 100) {
+                    break;
+                }
             }
         }
 
         fillEmptyCellsRandomly(random, locale);
+
     }
 
     public List<Word> getWords() {
@@ -123,6 +130,5 @@ public class WordSearchGenerator {
 
         coordinates.add(new Word(word, row, col, rowEnd, colEnd));
 
-        Log.d("coordinates", "["+ row + ", "+ col + "] ; [" + rowEnd +", " + colEnd + "]");
     }
 }
