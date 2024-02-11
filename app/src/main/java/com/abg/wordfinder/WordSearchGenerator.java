@@ -64,7 +64,6 @@ public class WordSearchGenerator {
                 }
             }
         }
-        listener.generated(wordsApply);
         fillEmptyCellsRandomly(random, locale);
 
     }
@@ -112,6 +111,8 @@ public class WordSearchGenerator {
                 }
             }
         }
+
+        listener.generated(wordsApply);
     }
 
     private void placeWord(String word, int row, int col, int rowDir, int colDir) {

@@ -18,19 +18,19 @@
         app:titleTextColor="@color/white" />
 
     <ScrollView
-        android:paddingTop="24dp"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/blue"
         app:layout_constraintBottom_toTopOf="@+id/wordsGrid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
 
         <LinearLayout
             android:id="@+id/linearForText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"/>
     </ScrollView>
 
     <com.abg.wordfinder.view.WordSearchView

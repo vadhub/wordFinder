@@ -315,8 +315,10 @@ public class WordSearchView extends View {
         for (Word word : words) {
             if (word.getWord().equals(str)) {
                 if (onWordSearchedListener != null) {
-                    wordsSearched++;
-                    onWordSearchedListener.wordFound(str, wordsSearched);
+                    if (!word.isHighlighted())  {
+                        wordsSearched++;
+                        onWordSearchedListener.wordFound(str, wordsSearched);
+                    }
                 }
                 word.setHighlighted(true);
                 word.setColor(color);
