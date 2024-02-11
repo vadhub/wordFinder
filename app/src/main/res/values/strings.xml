@@ -114,5 +114,12 @@
         <item>prince</item>
         <item>current</item>
         <item>paper</item>
+        <item>gas</item>
+        <item>north</item>
+        <item>south</item>
+        <item>west</item>
+        <item>east</item>
+        <item>river</item>
+        <item>program</item>
     </string-array>
 </resources>

@@ -107,6 +107,13 @@
         <item>князь</item>
         <item>ток</item>
         <item>бумага</item>
+        <item>газ</item>
+        <item>север</item>
+        <item>юг</item>
+        <item>запад</item>
+        <item>восток</item>
+        <item>река</item>
+        <item>программа</item>
     </string-array>
     <string name="settings">настройки</string>
     <string name="hint">подсказка</string>

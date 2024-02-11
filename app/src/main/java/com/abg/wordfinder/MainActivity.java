@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             linearForText.addView(textView);
         }
 
-        Log.d("ed", map.size()+"");
     }
 
     private void setSearchWord() {
