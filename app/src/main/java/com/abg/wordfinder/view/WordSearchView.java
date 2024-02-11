@@ -84,6 +84,10 @@ public class WordSearchView extends View {
         return true;
     }
 
+    public void refresh() {
+        wordsSearched = 0;
+    }
+
     public void setLetters(char[][] letters) {
         this.letters = letters;
         rows = letters.length;

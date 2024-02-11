@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private Configuration configuration;
     private LinearLayout linearForText;
     private List<String> words;
-    private List<String> wordsApply = new ArrayList<>(); // possiblewords
     private String[] temp;
     private final int row = 10;
     private final int col = 10;
@@ -124,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void setSearchWord() {
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
-        wordsGrid.setOnWordSearchedListener((word, wordSearchCount)  -> {
+        wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
+            Log.d("ddd", wordSearchCount +" " + wordSearchGenerator.getWords().size());
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 createDialogWin();
             }
@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
 
     @Override
     public void restart() {
+        wordsGrid.refresh();
         setUpWordSearch();
     }
 }
