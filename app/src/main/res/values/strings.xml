@@ -2,6 +2,7 @@
     <string name="app_name">wordFinder</string>
     <string name="wordfinder">WordFinder</string>
     <string name="settings">settings</string>
+    <string name="hint">hint</string>
     <string-array name="words">
         <item>apple</item>
         <item>phone</item>
