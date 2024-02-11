@@ -3,7 +3,6 @@ package com.abg.wordfinder;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -14,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
-import com.abg.wordfinder.model.Word;
+import com.abg.wordfinder.datasource.Configuration;
 import com.abg.wordfinder.view.WordSearchView;
 
 import java.util.ArrayList;
@@ -30,19 +29,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Configuration configuration = new Configuration(this);
+        LocaleChange.setLocale(this, configuration.getLocale());
+
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         String[] temp = getResources().getStringArray(R.array.words);
+
+        int row = 10;
+        int col = 10;
 
         List<String> words = new ArrayList<>(10);
 
         for (int i = 0; i < 10; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
-            if (!words.contains(s)) {
+            if (!words.contains(s) && s.length() < row) {
                 words.add(s);
             }
 
@@ -50,16 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, TextView> map = new HashMap<>();
 
-        WordSearchGenerator wordSearchGenerator = new WordSearchGenerator(10, 10, words);
+        WordSearchGenerator wordSearchGenerator = new WordSearchGenerator(row, col, words);
+        wordSearchGenerator.generateBoard(configuration.getLocale());
 
-        wordSearchGenerator.generateBoard("RU");
-        wordSearchGenerator.printBoard();
-
-        for (Word c: wordSearchGenerator.getWords()) {
-            Log.d("cc", c.toString());
-        }
-
-        LinearLayout linearForText = (LinearLayout) findViewById(R.id.linearForText);
+        LinearLayout linearForText = findViewById(R.id.linearForText);
 
         for (String s : words) {
             TextView textView = new TextView(this);
@@ -87,8 +85,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.settings) {
+            createDialog();
+        } else if (item.getItemId() == R.id.hint) {
 
         }
         return true;
+    }
+
+    private void createDialog() {
+        SettingsDialogFragment settingsDialogFragment = new SettingsDialogFragment();
+        settingsDialogFragment.show(this.getSupportFragmentManager(), "DialogFragment");
     }
 }

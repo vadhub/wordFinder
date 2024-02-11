@@ -95,9 +95,9 @@ public class WordSearchGenerator {
             for (int j = 0; j < board[0].length; j++) {
                 if (!occupied[i][j]) {
 
-                    if (locale.equals("RU")) {
+                    if (locale.equals("ru")) {
                         board[i][j] = russianAlphabet[random.nextInt(russianAlphabet.length)];
-                    } else if (locale.equals("EN")) {
+                    } else {
                         board[i][j] = englishAlphabet[random.nextInt(englishAlphabet.length)];
                     }
                 }
