@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         setContentView(R.layout.activity_main);
 
         BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
-        mBanner.setAdUnitId("R-M-5962296-1");
+        mBanner.setAdUnitId("R-M-5962296-2");
         mBanner.setAdSize(getAdSize(mBanner));
 
         configuration = new Configuration(this);

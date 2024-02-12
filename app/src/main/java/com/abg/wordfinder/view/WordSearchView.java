@@ -17,7 +17,11 @@ import androidx.core.view.MotionEventCompat;
 import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordSearchView extends View {
 
@@ -30,9 +34,11 @@ public class WordSearchView extends View {
 
     private Cell[][] cells;
     private Cell cellDragFrom, cellDragTo;
+    private final List<Cell> cellList = new ArrayList<>();
     private int color; //highlighter
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint textHighlighter = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint hintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -61,7 +67,7 @@ public class WordSearchView extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             cellDragFrom = getCell(x, y);
 
-            color = Color.argb(100, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+            color = Color.argb(255, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
             highlighterPaint.setColor(color);
 
             cellDragTo = cellDragFrom;
@@ -92,7 +98,6 @@ public class WordSearchView extends View {
         for (Word word : words) {
             if (!word.isHighlighted()) {
                 highlightHint(word);
-                Log.d("ddd", word.getWord());
                 return;
             }
         }
@@ -186,29 +191,10 @@ public class WordSearchView extends View {
             canvas.drawLine(cells[0][i].getRect().right, cells[0][0].getRect().top, cells[0][i].getRect().right, cells[columns - 1][0].getRect().bottom, gridLinePaint);
         }
 
-        // draw letters
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                String letter = String.valueOf(cells[i][j].getLetter());
-                @SuppressLint("DrawAllocation") Rect textBounds = new Rect();
-                textPaint.getTextBounds(letter, 0, 1, textBounds);
-                canvas.drawText(letter, cells[i][j].getRect().centerX() - (textPaint.measureText(letter) / 2),
-                        cells[i][j].getRect().centerY() + ((float) textBounds.height() / 2), textPaint);
-            }
-        }
-
         // draw highlighter
         if (isFromToValid(cellDragFrom, cellDragTo)) {
             canvas.drawLine(cellDragFrom.getRect().centerX(), cellDragFrom.getRect().centerY(),
                     cellDragTo.getRect().centerX() + 1, cellDragTo.getRect().centerY(), highlighterPaint);
-        }
-
-        if (hintWord != null) {
-            Log.d("rrr", "draw");
-            Rect from1 = cells[hintWord.getFromRow()][hintWord.getFromColumn()].getRect();
-            Rect to2 = cells[hintWord.getToRow()][hintWord.getToColumn()].getRect();
-            canvas.drawLine(from1.centerX(), from1.centerY(), to2.centerX() + 1, to2.centerY(), hintPaint);
-            hintWord = null;
         }
 
         for (Word word : words) {
@@ -219,6 +205,29 @@ public class WordSearchView extends View {
                 canvas.drawLine(from.centerX(), from.centerY(), to.centerX() + 1, to.centerY(), highlighterPaint);
                 highlighterPaint.setColor(color);
             }
+        }
+
+        // draw letters
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+
+                Cell temp = cells[i][j];
+
+                String letter = String.valueOf(temp.getLetter());
+                @SuppressLint("DrawAllocation") Rect textBounds = new Rect();
+
+                textPaint.getTextBounds(letter, 0, 1, textBounds);
+                canvas.drawText(letter, temp.getRect().centerX() - (textPaint.measureText(letter) / 2),
+                        temp.getRect().centerY() + ((float) textBounds.height() / 2), textPaint);
+            }
+        }
+
+
+        if (hintWord != null) {
+            Rect from1 = cells[hintWord.getFromRow()][hintWord.getFromColumn()].getRect();
+            Rect to2 = cells[hintWord.getToRow()][hintWord.getToColumn()].getRect();
+            canvas.drawLine(from1.centerX(), from1.centerY(), to2.centerX() + 1, to2.centerY(), hintPaint);
+            hintWord = null;
         }
     }
 
@@ -264,17 +273,24 @@ public class WordSearchView extends View {
 
     private String getWordStr(Cell from, Cell to) {
         StringBuilder word = new StringBuilder();
+        Cell cellTemp;
         boolean reverse = false;
 
         if (from.getRow() == to.getRow()) {
             int c = Math.min(from.getColumn(), to.getColumn());
             for (int i = 0; i < Math.abs(from.getColumn() - to.getColumn()) + 1; i++) {
-                word.append(cells[from.getRow()][i + c].getLetter());
+                cellTemp = cells[from.getRow()][i + c];
+                cellTemp.setColor(0xFFFFFFF);
+                cellList.add(cellTemp);
+                word.append(cellTemp.getLetter());
             }
         } else if (from.getColumn() == to.getColumn()) {
             int r = Math.min(from.getRow(), to.getRow());
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
-                word.append(cells[i + r][to.getColumn()].getLetter());
+                cellTemp = cells[i + r][to.getColumn()];
+                cellTemp.setColor(0xFFFFFFF);
+                cellList.add(cellTemp);
+                word.append(cellTemp.getLetter());
             }
         } else {
 
@@ -306,7 +322,10 @@ public class WordSearchView extends View {
 
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 int foo = from.getColumn() < to.getColumn() ? i : -i;
-                word.append(cells[from.getRow() + i][from.getColumn() + foo].getLetter());
+                cellTemp = cells[from.getRow() + i][from.getColumn() + foo];
+                cellTemp.setColor(0xFFFFFFF);
+                cellList.add(cellTemp);
+                word.append(cellTemp.getLetter());
             }
         }
         return reverse ? word.reverse().toString() : word.toString();
@@ -331,7 +350,6 @@ public class WordSearchView extends View {
     private void highlightHint(Word word) {
         hintWord = word;
         invalidate();
-       // hintWord = null;
     }
 }
 
