@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.abg.wordfinder.datasource.Configuration;
+import com.abg.wordfinder.model.Word;
 import com.abg.wordfinder.view.WordSearchView;
 import com.yandex.mobile.ads.banner.BannerAdSize;
 import com.yandex.mobile.ads.banner.BannerAdView;
@@ -41,6 +42,32 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private String[] temp;
     private final int row = 10;
     private final int col = 10;
+
+//    private char[][] letters  = {
+//            "АМСМСМАВКЕ".toCharArray(),
+//            "ЙЦУКЕНГШЩМ".toCharArray(),
+//            "ЙЦУСБЯЧЮСМ".toCharArray(),
+//            "АМСМЛАВВКЕ".toCharArray(),
+//            "ЙЦУКЕООШЩМ".toCharArray(),  // for icon ru ;)
+//            "ЙЦУСБЯВВСМ".toCharArray(),
+//            "АМСМСМАООЕ".toCharArray(),
+//            "ЙЦУКЕНГШЩМ".toCharArray(),
+//            "ЙЦУСБЯЧЮСМ".toCharArray(),
+//            "АМСМСМАВКЕ".toCharArray()
+//    };
+
+//        private char[][] letters  = {
+//                "ASCDEFGHIJ".toCharArray(),
+//                "AECDEFGHIJ".toCharArray(),
+//                "QWEWVCXSDF".toCharArray(),
+//                "АМСМOEВВКЕ".toCharArray(),
+//                "ACCDORGHIJ".toCharArray(), // // for icon en =)
+//                "AHCGERDHIJ".toCharArray(),
+//                "AICDEFDHIJ".toCharArray(),
+//                "ANCDEFGHIJ".toCharArray(),
+//                "AGCSOMEHIJ".toCharArray(),
+//                "ABCDEFGHIJ".toCharArray()
+//    };
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -150,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     }
 
     private void setSearchWord() {
+        //        ArrayList a = new ArrayList();
+//        a.add(new Word("СЛОВО", 2, 3, 6, 7));  // for icon too :-)
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
