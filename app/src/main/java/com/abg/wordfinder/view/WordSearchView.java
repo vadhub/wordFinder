@@ -38,7 +38,6 @@ public class WordSearchView extends View {
     private int color; //highlighter
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint textHighlighter = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint hintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -67,7 +66,7 @@ public class WordSearchView extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             cellDragFrom = getCell(x, y);
 
-            color = Color.argb(255, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+            color = Color.argb(200, (int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
             highlighterPaint.setColor(color);
 
             cellDragTo = cellDragFrom;

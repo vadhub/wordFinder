@@ -18,6 +18,7 @@
         app:titleTextColor="@color/white" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/blue"
@@ -32,6 +33,19 @@
             android:layout_height="0dp"
             android:orientation="vertical"/>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/wordsFound"
+        android:textSize="24sp"
+        android:paddingRight="24dp"
+        android:paddingBottom="24dp"
+        android:text="0"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"/>
 
     <com.abg.wordfinder.view.WordSearchView
         android:id="@+id/wordsGrid"

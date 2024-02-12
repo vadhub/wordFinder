@@ -21,6 +21,7 @@ import com.abg.wordfinder.datasource.Configuration;
 import com.abg.wordfinder.view.WordSearchView;
 import com.yandex.mobile.ads.banner.BannerAdSize;
 import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener {
 
     private WordSearchGenerator wordSearchGenerator;
+    private TextView textViewWordsFound;
     private WordSearchView wordsGrid;
     private Map<String, TextView> map;
     private Configuration configuration;
@@ -45,10 +47,13 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textViewWordsFound = findViewById(R.id.wordsFound);
 
         BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
-        mBanner.setAdUnitId("R-M-5962296-2");
+        mBanner.setAdUnitId("R-M-5962296-1");
         mBanner.setAdSize(getAdSize(mBanner));
+        AdRequest adRequest = new AdRequest.Builder().build();
+//        mBanner.loadAd(adRequest);
 
         configuration = new Configuration(this);
         LocaleChange.setLocale(this, configuration.getLocale());
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             wordsGrid.hint();
         } else if (item.getItemId() == R.id.refresh) {
             setUpWordSearch();
+            restart();
         }
 
         return true;
@@ -118,9 +124,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             if (!words.contains(s) && s.length() < row) {
                 words.add(s);
             }
-
         }
-
         wordSearchGenerator = new WordSearchGenerator(row, col, words, this);
         wordSearchGenerator.generateBoard(configuration.getLocale());
     }
@@ -149,11 +153,11 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
-            Log.d("ddd", wordSearchCount +" " + wordSearchGenerator.getWords().size());
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 createDialogWin();
                 wordsGrid.refresh();
             }
+            textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount)+"");
             TextView v = map.get(word.toLowerCase());
             v.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
             v.setTextColor(Color.GRAY);
@@ -169,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     public void generated(List<String> words) {
         generateTextView(words);
         setSearchWord();
+        textViewWordsFound.setText(wordSearchGenerator.getWords().size()+"");
     }
 
     @Override
