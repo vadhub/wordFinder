@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         mBanner.setAdUnitId("R-M-5962296-1");
         mBanner.setAdSize(getAdSize(mBanner));
         AdRequest adRequest = new AdRequest.Builder().build();
-//        mBanner.loadAd(adRequest);
+        mBanner.loadAd(adRequest);
 
         configuration = new Configuration(this);
         LocaleChange.setLocale(this, configuration.getLocale());
