@@ -17,6 +17,15 @@ import java.util.Locale;
 public class SettingsDialogFragment extends DialogFragment implements View.OnClickListener {
 
     private Configuration saveConfiguration;
+    private ChangeLanguageListener listener;
+
+    public interface ChangeLanguageListener {
+        void change();
+    }
+
+    public void setListener(ChangeLanguageListener listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -38,6 +47,7 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setView(view).setPositiveButton("Ok",((dialog, which) -> {
+            listener.change();
             dialog.dismiss();
         }));
 

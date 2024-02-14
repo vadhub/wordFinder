@@ -182,13 +182,13 @@ public class WordSearchView extends View {
             return;
         }
 
-        // draw grid
-        for (int i = 0; i < rows - 1; i++) {
-            canvas.drawLine(0, cells[i][0].getRect().bottom, width, cells[i][0].getRect().bottom, gridLinePaint);
-        }
-        for (int i = 0; i < columns - 1; i++) {
-            canvas.drawLine(cells[0][i].getRect().right, cells[0][0].getRect().top, cells[0][i].getRect().right, cells[columns - 1][0].getRect().bottom, gridLinePaint);
-        }
+        // draw grid comment on future , maybe enable in settings
+//        for (int i = 0; i < rows - 1; i++) {
+//            canvas.drawLine(0, cells[i][0].getRect().bottom, width, cells[i][0].getRect().bottom, gridLinePaint);
+//        }
+//        for (int i = 0; i < columns - 1; i++) {
+//            canvas.drawLine(cells[0][i].getRect().right, cells[0][0].getRect().top, cells[0][i].getRect().right, cells[columns - 1][0].getRect().bottom, gridLinePaint);
+//        }
 
         // draw highlighter
         if (isFromToValid(cellDragFrom, cellDragTo)) {

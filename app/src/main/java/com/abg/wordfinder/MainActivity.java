@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener {
+public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener, SettingsDialogFragment.ChangeLanguageListener {
 
     private WordSearchGenerator wordSearchGenerator;
     private TextView textViewWordsFound;
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
 
     private void createDialog() {
         SettingsDialogFragment settingsDialogFragment = new SettingsDialogFragment();
+        settingsDialogFragment.setListener(this);
         settingsDialogFragment.show(this.getSupportFragmentManager(), "DialogFragment");
     }
 
@@ -209,5 +210,10 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     public void restart() {
         wordsGrid.refresh();
         setUpWordSearch();
+    }
+
+    @Override
+    public void change() {
+        restart();
     }
 }
