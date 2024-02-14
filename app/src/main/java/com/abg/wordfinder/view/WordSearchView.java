@@ -36,14 +36,14 @@ public class WordSearchView extends View {
     private Cell cellDragFrom, cellDragTo;
     private final List<Cell> cellList = new ArrayList<>();
     private int color; //highlighter
+    private int colorTextMatch = 0xFFFFFFFF;
+    private int colorText = 0xcc000000;
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint textPaintMatch = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint hintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Word hintWord;
-
-    private Typeface typeface;
 
     private OnWordSearchedListener onWordSearchedListener;
     private int wordsSearched = 0;
@@ -80,10 +80,15 @@ public class WordSearchView extends View {
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
 //            Log.d("WordsGrid", getWordStr(cellDragFrom, cellDragTo));
             String word = getWordStr(cellDragFrom, cellDragTo);
-            highlightIfContain(word);
+            if (!highlightIfContain(word)) {
+                for (Cell c : cellList) {
+                    c.setColor(0);
+                }
+            }
             cellDragFrom = null;
             cellDragTo = null;
             invalidate();
+            cellList.clear();
             return false;
         }
         return true;
@@ -107,12 +112,6 @@ public class WordSearchView extends View {
         rows = letters.length;
         columns = letters[0].length;
         initCells();
-        invalidate();
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.typeface = typeface;
-        textPaint.setTypeface(typeface);
         invalidate();
     }
 
@@ -152,12 +151,14 @@ public class WordSearchView extends View {
     private void init() {
 
         textPaint.setSubpixelText(true);
-        textPaint.setColor(0xcc000000);
+        textPaint.setColor(colorText);
         textPaint.setTextSize(70);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
+
+        textPaintMatch.setSubpixelText(true);
+        textPaintMatch.setColor(colorTextMatch);
+        textPaintMatch.setTextSize(70);
+        textPaintMatch.setTextAlign(Paint.Align.LEFT);
 
         highlighterPaint.setStyle(Paint.Style.STROKE);
         highlighterPaint.setStrokeWidth(110);
@@ -169,10 +170,6 @@ public class WordSearchView extends View {
         int hintColor = 0x220098FF;
         hintPaint.setColor(hintColor);
 
-        gridLinePaint.setStyle(Paint.Style.STROKE);
-        gridLinePaint.setStrokeWidth(4);
-        gridLinePaint.setStrokeCap(Paint.Cap.SQUARE);
-        gridLinePaint.setColor(0x11000000);
     }
 
     @Override
@@ -214,6 +211,10 @@ public class WordSearchView extends View {
 
                 String letter = String.valueOf(temp.getLetter());
                 @SuppressLint("DrawAllocation") Rect textBounds = new Rect();
+                textPaint.setColor(colorText);
+                if (temp.getColorLetter() != 0) {
+                    textPaint.setColor(temp.getColorLetter());
+                }
 
                 textPaint.getTextBounds(letter, 0, 1, textBounds);
                 canvas.drawText(letter, temp.getRect().centerX() - (textPaint.measureText(letter) / 2),
@@ -279,7 +280,7 @@ public class WordSearchView extends View {
             int c = Math.min(from.getColumn(), to.getColumn());
             for (int i = 0; i < Math.abs(from.getColumn() - to.getColumn()) + 1; i++) {
                 cellTemp = cells[from.getRow()][i + c];
-                cellTemp.setColor(0xFFFFFFF);
+                cellTemp.setColor(colorTextMatch);
                 cellList.add(cellTemp);
                 word.append(cellTemp.getLetter());
             }
@@ -287,7 +288,7 @@ public class WordSearchView extends View {
             int r = Math.min(from.getRow(), to.getRow());
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 cellTemp = cells[i + r][to.getColumn()];
-                cellTemp.setColor(0xFFFFFFF);
+                cellTemp.setColor(colorTextMatch);
                 cellList.add(cellTemp);
                 word.append(cellTemp.getLetter());
             }
@@ -322,7 +323,7 @@ public class WordSearchView extends View {
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 int foo = from.getColumn() < to.getColumn() ? i : -i;
                 cellTemp = cells[from.getRow() + i][from.getColumn() + foo];
-                cellTemp.setColor(0xFFFFFFF);
+                cellTemp.setColor(colorTextMatch);
                 cellList.add(cellTemp);
                 word.append(cellTemp.getLetter());
             }
@@ -330,9 +331,10 @@ public class WordSearchView extends View {
         return reverse ? word.reverse().toString() : word.toString();
     }
 
-    private void highlightIfContain(String str) {
+    private boolean highlightIfContain(String str) {
         for (Word word : words) {
             if (word.getWord().equals(str)) {
+                cellList.clear();
                 if (onWordSearchedListener != null) {
                     if (!word.isHighlighted())  {
                         wordsSearched++;
@@ -341,9 +343,10 @@ public class WordSearchView extends View {
                 }
                 word.setHighlighted(true);
                 word.setColor(color);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     private void highlightHint(Word word) {
