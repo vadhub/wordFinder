@@ -280,16 +280,14 @@ public class WordSearchView extends View {
             int c = Math.min(from.getColumn(), to.getColumn());
             for (int i = 0; i < Math.abs(from.getColumn() - to.getColumn()) + 1; i++) {
                 cellTemp = cells[from.getRow()][i + c];
-                cellTemp.setColor(colorTextMatch);
-                cellList.add(cellTemp);
+                letterMatch(cellTemp);
                 word.append(cellTemp.getLetter());
             }
         } else if (from.getColumn() == to.getColumn()) {
             int r = Math.min(from.getRow(), to.getRow());
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 cellTemp = cells[i + r][to.getColumn()];
-                cellTemp.setColor(colorTextMatch);
-                cellList.add(cellTemp);
+                letterMatch(cellTemp);
                 word.append(cellTemp.getLetter());
             }
         } else {
@@ -323,8 +321,7 @@ public class WordSearchView extends View {
             for (int i = 0; i < Math.abs(from.getRow() - to.getRow()) + 1; i++) {
                 int foo = from.getColumn() < to.getColumn() ? i : -i;
                 cellTemp = cells[from.getRow() + i][from.getColumn() + foo];
-                cellTemp.setColor(colorTextMatch);
-                cellList.add(cellTemp);
+                letterMatch(cellTemp);
                 word.append(cellTemp.getLetter());
             }
         }
@@ -352,6 +349,13 @@ public class WordSearchView extends View {
     private void highlightHint(Word word) {
         hintWord = word;
         invalidate();
+    }
+
+    private void letterMatch(Cell cell) {
+        if (cell.getColorLetter() == 0) {
+            cell.setColor(colorTextMatch);
+            cellList.add(cell);
+        }
     }
 }
 
