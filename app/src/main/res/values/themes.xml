@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.WordFinder" parent="Base.Theme.WordFinder" />
+
+    <style name="background">
+        <item name="android:background">@color/blue</item>
+    </style>
+
+    <style name="wordSearch">
+        <item name="colorText">@color/text_color</item>
+    </style>
 </resources>

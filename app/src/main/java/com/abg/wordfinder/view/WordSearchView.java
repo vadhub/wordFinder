@@ -2,6 +2,7 @@ package com.abg.wordfinder.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,6 +15,7 @@ import android.view.View;
 
 import androidx.core.view.MotionEventCompat;
 
+import com.abg.wordfinder.R;
 import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
 
@@ -35,9 +37,10 @@ public class WordSearchView extends View {
     private Cell[][] cells;
     private Cell cellDragFrom, cellDragTo;
     private final List<Cell> cellList = new ArrayList<>();
-    private int color; //highlighter
-    private int colorTextMatch = 0xFFFFFFFF;
-    private int colorText = 0xcc000000;
+    private int color; //highlighter random color
+    private final int colorTextMatch;
+    private final int colorText;
+    private final int hintColor;
     private int hintsCount = 0;
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -51,6 +54,10 @@ public class WordSearchView extends View {
 
     public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        @SuppressLint("CustomViewStyleable") TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomViewWordSearch, 0, 0);
+        colorTextMatch = typedArray.getColor(R.styleable.CustomViewWordSearch_colorTextMatch, 0xFFFFFFFF);
+        colorText = typedArray.getColor(R.styleable.CustomViewWordSearch_colorText, 0xcc000000);
+        hintColor = typedArray.getColor(R.styleable.CustomViewWordSearch_hintColor, 0x220098FF);
         init();
     }
 
@@ -174,7 +181,6 @@ public class WordSearchView extends View {
         hintPaint.setStyle(Paint.Style.STROKE);
         hintPaint.setStrokeWidth(110);
         hintPaint.setStrokeCap(Paint.Cap.ROUND);
-        int hintColor = 0x220098FF;
         hintPaint.setColor(hintColor);
 
     }

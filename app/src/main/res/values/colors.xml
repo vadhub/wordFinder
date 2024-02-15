@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#14210255 </color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#00649C</color>
     <color name="blue_dark">#005F93</color>
+    <color name="blue_dark_200">#002132</color>
+    <color name="text_color">#cc000000</color>
+    <color name="text_color_dark">#CCB1B1B1</color>
+    <color name="hint_color">#220098FF</color>
 </resources>

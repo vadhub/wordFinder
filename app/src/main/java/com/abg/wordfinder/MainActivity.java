@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         temp = getResources().getStringArray(R.array.words);
         wordsGrid = findViewById(R.id.wordsGrid);

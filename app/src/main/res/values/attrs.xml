@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomViewWordSearch">
+        <attr name="colorText" format="color" />
+        <attr name="colorTextMatch" format="color" />
+        <attr name="colorCells" format="color" />
+        <attr name="gridEnable" format="boolean" />
+        <attr name="hintColor" format="color" />
+    </declare-styleable>
+</resources>
