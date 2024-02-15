@@ -327,4 +327,5 @@
     <string name="you_win">Вы выиграли!</string>
     <string name="restart">Рестарт?</string>
     <string name="your_time">"Ваше время: "</string>
+    <string name="tips_used">"Подказки: "</string>
 </resources>

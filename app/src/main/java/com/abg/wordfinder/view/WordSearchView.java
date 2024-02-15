@@ -38,6 +38,7 @@ public class WordSearchView extends View {
     private int color; //highlighter
     private int colorTextMatch = 0xFFFFFFFF;
     private int colorText = 0xcc000000;
+    private int hintsCount = 0;
 
     private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint textPaintMatch = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -51,6 +52,10 @@ public class WordSearchView extends View {
     public WordSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    public int getHintsCount() {
+        return hintsCount;
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -96,12 +101,14 @@ public class WordSearchView extends View {
 
     public void refresh() {
         wordsSearched = 0;
+        hintsCount =  0;
     }
 
     public void hint() {
         for (Word word : words) {
             if (!word.isHighlighted()) {
                 highlightHint(word);
+                hintsCount++;
                 return;
             }
         }

@@ -323,4 +323,5 @@
         <item>east</item>
         <item>program</item>
     </string-array>
+    <string name="tips_used">"Hints: "</string>
 </resources>

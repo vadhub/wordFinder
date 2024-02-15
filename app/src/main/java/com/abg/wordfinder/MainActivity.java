@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void createDialogWin() {
         WinDialogFragment winDialogFragment = new WinDialogFragment();
         winDialogFragment.setTime((String) chronometer.getText());
+        winDialogFragment.setHints(wordsGrid.getHintsCount() + "");
         winDialogFragment.setListener(this);
         winDialogFragment.show(this.getSupportFragmentManager(), "WinFragment");
     }
@@ -187,9 +188,9 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
+                chronometer.stop();
                 createDialogWin();
                 wordsGrid.refresh();
-                chronometer.stop();
             }
             textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount)+"");
             TextView v = map.get(word.toLowerCase());
