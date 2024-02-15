@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">найди слово</string>
+    <string name="app_name">Найди слово</string>
     <string-array name="words" tools:ignore="InconsistentArrays">
         <item>мышь</item>
         <item>кошка</item>
@@ -321,11 +321,12 @@
         <item>программа</item>
         <item>телега</item>
     </string-array>
-    <string name="settings">настройки</string>
+    <string name="settings">Настройки</string>
     <string name="hint">подсказка</string>
     <string name="change_lang">изменение языка</string>
     <string name="you_win">Вы выиграли!</string>
     <string name="restart">Рестарт?</string>
     <string name="your_time">"Ваше время: "</string>
     <string name="tips_used">"Подказки: "</string>
+    <string name="contrast">Контраст</string>
 </resources>

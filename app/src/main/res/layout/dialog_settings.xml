@@ -5,7 +5,25 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:text="@string/display"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:text="@string/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:text="@string/contrast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:paddingHorizontal="8dp"
+        android:paddingTop="4dp"
         android:text="@string/change_lang"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
