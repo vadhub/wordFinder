@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.abg.wordfinder.datasource.Configuration;
-import com.abg.wordfinder.model.Word;
 import com.abg.wordfinder.view.WordSearchView;
 import com.yandex.mobile.ads.banner.BannerAdSize;
 import com.yandex.mobile.ads.banner.BannerAdView;
@@ -28,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener, SettingsDialogFragment.ChangeLanguageListener {
 
@@ -147,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void generateWord() {
         words = null;
         words = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < temp.length; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
-            if (!words.contains(s) && s.length() < row) {
+            if (!words.contains(s) && s.length() <= row) {
                 words.add(s);
             }
         }
