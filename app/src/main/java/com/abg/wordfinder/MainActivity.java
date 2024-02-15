@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private WordSearchGenerator wordSearchGenerator;
     private TextView textViewWordsFound;
     private WordSearchView wordsGrid;
+    private Chronometer chronometer;
     private Map<String, TextView> map;
     private Configuration configuration;
     private LinearLayout linearForText;
@@ -72,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewWordsFound = findViewById(R.id.wordsFound);
+
+        chronometer = findViewById(R.id.secondomer);
 
         BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
         mBanner.setAdUnitId("R-M-5962296-1");
@@ -137,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
 
     private void createDialogWin() {
         WinDialogFragment winDialogFragment = new WinDialogFragment();
+        winDialogFragment.setTime((String) chronometer.getText());
         winDialogFragment.setListener(this);
         winDialogFragment.show(this.getSupportFragmentManager(), "WinFragment");
     }
@@ -183,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 createDialogWin();
                 wordsGrid.refresh();
+                chronometer.stop();
             }
             textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount)+"");
             TextView v = map.get(word.toLowerCase());
@@ -201,12 +208,14 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         generateTextView(words);
         setSearchWord();
         textViewWordsFound.setText(wordSearchGenerator.getWords().size()+"");
+        chronometer.start();
     }
 
     @Override
     public void restart() {
         wordsGrid.refresh();
         setUpWordSearch();
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
     @Override
