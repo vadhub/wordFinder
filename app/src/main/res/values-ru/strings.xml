@@ -71,7 +71,6 @@
         <item>книга</item>
         <item>газета</item>
         <item>журнал</item>
-        <item>периодика</item>
         <item>резинка</item>
         <item>ручка</item>
         <item>карандаш</item>
@@ -303,7 +302,6 @@
         <item>фото</item>
         <item>лопата</item>
         <item>лестница</item>
-        <item>дескриптор</item>
         <item>цвет</item>
         <item>карта</item>
         <item>фрукты</item>
@@ -328,4 +326,5 @@
     <string name="change_lang">изменение языка</string>
     <string name="you_win">Вы выиграли!</string>
     <string name="restart">Рестарт?</string>
+    <string name="your_time">"Ваше время: "</string>
 </resources>

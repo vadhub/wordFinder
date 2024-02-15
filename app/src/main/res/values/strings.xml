@@ -8,6 +8,7 @@
     <string name="refresh" translatable="false">refresh</string>
     <string name="you_win">You win!</string>
     <string name="restart">Restart?</string>
+    <string name="your_time">"Your time: "</string>
     <string-array name="words" tools:ignore="InconsistentArrays">
         <item>mouse</item>
         <item>cat</item>
