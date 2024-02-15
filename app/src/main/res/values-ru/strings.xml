@@ -2,118 +2,327 @@
 <resources>
     <string name="app_name">найди слово</string>
     <string-array name="words">
-        <item>яблоко</item>
-        <item>телефон</item>
+        <item>мышь</item>
+        <item>кошка</item>
         <item>дерево</item>
+        <item>солнце</item>
+        <item>море</item>
+        <item>гора</item>
+        <item>звезда</item>
+        <item>песок</item>
+        <item>вода</item>
+        <item>шарик</item>
+        <item>телефон</item>
+        <item>компьютер</item>
+        <item>чашка</item>
+        <item>ложка</item>
+        <item>вилка</item>
+        <item>носок</item>
+        <item>книжка</item>
+        <item>пижама</item>
+        <item>планета</item>
+        <item>спутник</item>
+        <item>комета</item>
+        <item>корабль</item>
+        <item>самолет</item>
+        <item>поезд</item>
+        <item>автобус</item>
+        <item>велосипед</item>
+        <item>машина</item>
+        <item>телевизор</item>
+        <item>радио</item>
+        <item>микроволновка</item>
+        <item>холодильник</item>
+        <item>пылесос</item>
+        <item>утюг</item>
+        <item>фен</item>
+        <item>платок</item>
+        <item>зонт</item>
+        <item>перчатка</item>
+        <item>шарф</item>
+        <item>пояс</item>
+        <item>платье</item>
+        <item>брюки</item>
+        <item>рубашка</item>
+        <item>свитер</item>
+        <item>куртка</item>
+        <item>пальто</item>
+        <item>туфли</item>
+        <item>сандалии</item>
+        <item>ботинки</item>
+        <item>плед</item>
+        <item>кушетка</item>
+        <item>кресло</item>
+        <item>стол</item>
+        <item>стул</item>
+        <item>кровать</item>
+        <item>тумбочка</item>
+        <item>шкаф</item>
+        <item>полка</item>
+        <item>ковер</item>
+        <item>занавеска</item>
+        <item>коврик</item>
+        <item>зеркало</item>
+        <item>картина</item>
+        <item>люстра</item>
+        <item>светильник</item>
+        <item>лампа</item>
+        <item>свеча</item>
+        <item>книга</item>
+        <item>газета</item>
+        <item>журнал</item>
+        <item>периодика</item>
+        <item>резинка</item>
+        <item>ручка</item>
+        <item>карандаш</item>
+        <item>фломастер</item>
+        <item>пенал</item>
+        <item>тетрадь</item>
+        <item>учебник</item>
+        <item>школьник</item>
+        <item>студент</item>
+        <item>учитель</item>
+        <item>директор</item>
+        <item>секретарь</item>
+        <item>яблоко</item>
+        <item>кофе</item>
+        <item>кот</item>
+        <item>дождь</item>
+        <item>радуга</item>
+        <item>корона</item>
+        <item>печь</item>
+        <item>дорога</item>
+        <item>бутылка</item>
+        <item>мяч</item>
+        <item>шляпа</item>
+        <item>окно</item>
+        <item>музыка</item>
+        <item>собака</item>
+        <item>папка</item>
+        <item>луна</item>
+        <item>пляж</item>
+        <item>гитара</item>
+        <item>мороженое</item>
+        <item>цветок</item>
+        <item>медведь</item>
+        <item>батарея</item>
+        <item>камень</item>
+        <item>космос</item>
+        <item>ключ</item>
+        <item>апельсин</item>
+        <item>сумка</item>
+        <item>соль</item>
+        <item>пепельница</item>
+        <item>часы</item>
+        <item>рыба</item>
+        <item>медаль</item>
+        <item>ведро</item>
+        <item>трава</item>
+        <item>мыло</item>
+        <item>страница</item>
+        <item>картошка</item>
+        <item>шапка</item>
+        <item>парашют</item>
+        <item>ходунки</item>
+        <item>сено</item>
+        <item>котлета</item>
+        <item>салфетка</item>
+        <item>чемодан</item>
+        <item>замок</item>
+        <item>кран</item>
+        <item>монитор</item>
+        <item>речка</item>
+        <item>чайник</item>
+        <item>шуба</item>
+        <item>картридж</item>
+        <item>сковорода</item>
+        <item>чернила</item>
+        <item>джинсы</item>
+        <item>вино</item>
+        <item>масло</item>
+        <item>бумага</item>
+        <item>нить</item>
+        <item>перо</item>
+        <item>пыльца</item>
+        <item>секатор</item>
+        <item>воздух</item>
+        <item>маска</item>
+        <item>блокнот</item>
+        <item>небо</item>
+        <item>деньги</item>
+        <item>погода</item>
+        <item>парк</item>
+        <item>школа</item>
+        <item>университет</item>
+        <item>футбол</item>
+        <item>баскетбол</item>
+        <item>пианино</item>
+        <item>певец</item>
+        <item>актёр</item>
+        <item>политика</item>
+        <item>экономика</item>
+        <item>философия</item>
+        <item>медицина</item>
+        <item>технологии</item>
+        <item>наука</item>
+        <item>искусство</item>
+        <item>мода</item>
+        <item>еда</item>
+        <item>напитки</item>
+        <item>кухня</item>
+        <item>ресторан</item>
+        <item>кафе</item>
+        <item>город</item>
+        <item>лес</item>
+        <item>горы</item>
+        <item>озеро</item>
+        <item>река</item>
+        <item>галактика</item>
+        <item>вселенная</item>
+        <item>тигр</item>
+        <item>слоны</item>
+        <item>кит</item>
+        <item>пингвин</item>
+        <item>орел</item>
+        <item>крокодил</item>
+        <item>еж</item>
+        <item>барсук</item>
+        <item>лиса</item>
+        <item>овца</item>
+        <item>корова</item>
+        <item>лошадь</item>
+        <item>обезьяна</item>
+        <item>жираф</item>
+        <item>страус</item>
+        <item>кенгуру</item>
+        <item>черепаха</item>
+        <item>хамелеон</item>
+        <item>слон</item>
+        <item>дельфин</item>
+        <item>ленивец</item>
+        <item>попугай</item>
+        <item>змея</item>
+        <item>ящерица</item>
+        <item>жаба</item>
+        <item>бег</item>
+        <item>лето</item>
+        <item>радость</item>
+        <item>друзья</item>
+        <item>смех</item>
+        <item>ночь</item>
+        <item>путешествие</item>
+        <item>весна</item>
+        <item>улыбка</item>
+        <item>счастье</item>
+        <item>свобода</item>
+        <item>танец</item>
+        <item>мечта</item>
+        <item>рассвет</item>
+        <item>вечер</item>
+        <item>слово</item>
+        <item>закат</item>
+        <item>волна</item>
+        <item>снег</item>
+        <item>молоко</item>
+        <item>звук</item>
+        <item>облако</item>
+        <item>птица</item>
+        <item>чай</item>
+        <item>заяц</item>
+        <item>крыша</item>
+        <item>дверь</item>
+        <item>картинка</item>
+        <item>стукач</item>
+        <item>гусь</item>
+        <item>болт</item>
+        <item>колено</item>
+        <item>горло</item>
+        <item>нос</item>
+        <item>глаз</item>
+        <item>ананас</item>
+        <item>клубника</item>
+        <item>слива</item>
+        <item>персик</item>
+        <item>абрикос</item>
+        <item>червь</item>
+        <item>курица</item>
+        <item>утка</item>
+        <item>петух</item>
+        <item>борода</item>
+        <item>бровь</item>
+        <item>мочка</item>
+        <item>подбородок</item>
+        <item>палец</item>
         <item>рука</item>
         <item>голова</item>
         <item>человек</item>
-        <item>кошка</item>
         <item>страна</item>
         <item>земля</item>
-        <item>планета</item>
-        <item>стол</item>
-        <item>стул</item>
+        <item>таблица</item>
         <item>суп</item>
         <item>плита</item>
-        <item>кухня</item>
         <item>дом</item>
         <item>лось</item>
         <item>квартира</item>
-        <item>небо</item>
-        <item>слон</item>
         <item>люди</item>
         <item>общество</item>
-        <item>собака</item>
         <item>клавиатура</item>
-        <item>компьютер</item>
         <item>сосед</item>
-        <item>буква</item>
-        <item>солнце</item>
+        <item>письмо</item>
         <item>континент</item>
         <item>фильм</item>
         <item>сериал</item>
         <item>правительство</item>
-        <item>государство</item>
-        <item>правитель</item>
+        <item>состояние</item>
+        <item>линейка</item>
         <item>диван</item>
-        <item>мышь</item>
         <item>сыр</item>
         <item>помидор</item>
         <item>огурец</item>
-        <item>окно</item>
         <item>телевизор</item>
-        <item>число</item>
+        <item>номер</item>
         <item>волосы</item>
-        <item>кран</item>
-        <item>стакан</item>
-        <item>самолет</item>
-        <item>листок</item>
-        <item>снег</item>
-        <item>дождь</item>
-        <item>облако</item>
+        <item>стекло</item>
+        <item>лист</item>
         <item>колесо</item>
-        <item>машина</item>
+        <item>автомобиль</item>
         <item>двигатель</item>
-        <item>руль</item>
         <item>плов</item>
         <item>экран</item>
-        <item>номер</item>
-        <item>буква</item>
-        <item>кубик</item>
-        <item>уж</item>
+        <item>куб</item>
+        <item>уже</item>
         <item>камера</item>
-        <item>кресло</item>
-        <item>вода</item>
-        <item>воздух</item>
         <item>огонь</item>
         <item>стена</item>
         <item>потолок</item>
-        <item>деньги</item>
         <item>реклама</item>
         <item>забор</item>
-        <item>дверь</item>
-        <item>стекло</item>
         <item>очки</item>
-        <item>часы</item>
         <item>время</item>
-        <item>слово</item>
-        <item>книга</item>
         <item>почта</item>
-        <item>музыка</item>
         <item>видео</item>
-        <item>фотография</item>
+        <item>фото</item>
         <item>лопата</item>
-        <item>лес</item>
-        <item>крыша</item>
-        <item>лошадь</item>
-        <item>потолок</item>
         <item>лестница</item>
-        <item>бег</item>
-        <item>мяч</item>
-        <item>ручка</item>
+        <item>дескриптор</item>
         <item>цвет</item>
         <item>карта</item>
-        <item>фрукт</item>
+        <item>фрукты</item>
         <item>овощ</item>
-        <item>звук</item>
         <item>текст</item>
         <item>семья</item>
         <item>сын</item>
         <item>дочь</item>
         <item>отец</item>
-        <item>студент</item>
         <item>сок</item>
-        <item>князь</item>
-        <item>ток</item>
-        <item>бумага</item>
+        <item>принц</item>
         <item>газ</item>
         <item>север</item>
         <item>юг</item>
         <item>запад</item>
         <item>восток</item>
-        <item>река</item>
         <item>программа</item>
+        <item>телега</item>
     </string-array>
     <string name="settings">настройки</string>
     <string name="hint">подсказка</string>

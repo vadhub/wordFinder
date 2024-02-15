@@ -9,35 +9,274 @@
     <string name="you_win">You win!</string>
     <string name="restart">Restart?</string>
     <string-array name="words">
-        <item>apple</item>
-        <item>phone</item>
+        <item>mouse</item>
+        <item>cat</item>
         <item>tree</item>
+        <item>sun</item>
+        <item>sea</item>
+        <item>mountain</item>
+        <item>star</item>
+        <item>sand</item>
+        <item>water</item>
+        <item>ball</item>
+        <item>phone</item>
+        <item>computer</item>
+        <item>cup</item>
+        <item>spoon</item>
+        <item>fork</item>
+        <item>sock</item>
+        <item>book</item>
+        <item>pajamas</item>
+        <item>planet</item>
+        <item>satellite</item>
+        <item>comet</item>
+        <item>ship</item>
+        <item>airplane</item>
+        <item>train</item>
+        <item>bus</item>
+        <item>bicycle</item>
+        <item>car</item>
+        <item>TV</item>
+        <item>radio</item>
+        <item>microwave</item>
+        <item>refrigerator</item>
+        <item>vacuum cleaner</item>
+        <item>iron</item>
+        <item>hairdryer</item>
+        <item>shawl</item>
+        <item>umbrella</item>
+        <item>glove</item>
+        <item>scarf</item>
+        <item>belt</item>
+        <item>dress</item>
+        <item>pants</item>
+        <item>shirt</item>
+        <item>sweater</item>
+        <item>jacket</item>
+        <item>coat</item>
+        <item>shoes</item>
+        <item>sandals</item>
+        <item>boots</item>
+        <item>plaid</item>
+        <item>couch</item>
+        <item>chair</item>
+        <item>table</item>
+        <item>chair</item>
+        <item>bed</item>
+        <item>bedside table</item>
+        <item>wardrobe</item>
+        <item>shelf</item>
+        <item>wardrobe</item>
+        <item>carpet</item>
+        <item>curtain</item>
+        <item>mat</item>
+        <item>mirror</item>
+        <item>picture</item>
+        <item>chandelier</item>
+        <item>lamp</item>
+        <item>lamp</item>
+        <item>candle</item>
+        <item>book</item>
+        <item>newspaper</item>
+        <item>magazine</item>
+        <item>periodical</item>
+        <item>elastic band</item>
+        <item>handle</item>
+        <item>pencil</item>
+        <item>felt pen</item>
+        <item>pencil case</item>
+        <item>notebook</item>
+        <item>textbook</item>
+        <item>schoolboy</item>
+        <item>student</item>
+        <item>teacher</item>
+        <item>director</item>
+        <item>secretary</item>
+        <item>apple</item>
+        <item>coffee</item>
+        <item>cat</item>
+        <item>rain</item>
+        <item>rainbow</item>
+        <item>crown</item>
+        <item>oven</item>
+        <item>road</item>
+        <item>bottle</item>
+        <item>ball</item>
+        <item>hat</item>
+        <item>window</item>
+        <item>music</item>
+        <item>dog</item>
+        <item>folder</item>
+        <item>moon</item>
+        <item>beach</item>
+        <item>guitar</item>
+        <item>ice cream</item>
+        <item>flower</item>
+        <item>bear</item>
+        <item>battery</item>
+        <item>stone</item>
+        <item>space</item>
+        <item>key</item>
+        <item>orange</item>
+        <item>bag</item>
+        <item>salt</item>
+        <item>ashtray</item>
+        <item>clock</item>
+        <item>fish</item>
+        <item>medal</item>
+        <item>bucket</item>
+        <item>grass</item>
+        <item>soap</item>
+        <item>page</item>
+        <item>potato</item>
+        <item>hat</item>
+        <item>parachute</item>
+        <item>walkers</item>
+        <item>hay</item>
+        <item>cutlet</item>
+        <item>napkin</item>
+        <item>suitcase</item>
+        <item>castle</item>
+        <item>faucet</item>
+        <item>monitor</item>
+        <item>river</item>
+        <item>kettle</item>
+        <item>fur coat</item>
+        <item>cartridge</item>
+        <item>frying pan</item>
+        <item>ink</item>
+        <item>jeans</item>
+        <item>wine</item>
+        <item>oil</item>
+        <item>paper</item>
+        <item>thread</item>
+        <item>feather</item>
+        <item>pollen</item>
+        <item>secateur</item>
+        <item>air</item>
+        <item>mask</item>
+        <item>notepad</item>
+        <item>sky</item>
+        <item>money</item>
+        <item>weather</item>
+        <item>park</item>
+        <item>school</item>
+        <item>university</item>
+        <item>football</item>
+        <item>basketball</item>
+        <item>piano</item>
+        <item>singer</item>
+        <item>actor</item>
+        <item>policy</item>
+        <item>economy</item>
+        <item>philosophy</item>
+        <item>medicine</item>
+        <item>technology</item>
+        <item>science</item>
+        <item>art</item>
+        <item>fashion</item>
+        <item>food</item>
+        <item>drinks</item>
+        <item>kitchen</item>
+        <item>restaurant</item>
+        <item>cafe</item>
+        <item>city</item>
+        <item>forest</item>
+        <item>mountains</item>
+        <item>lake</item>
+        <item>river</item>
+        <item>galaxy</item>
+        <item>universe</item>
+        <item>tiger</item>
+        <item>elephants</item>
+        <item>whale</item>
+        <item>penguin</item>
+        <item>eagle</item>
+        <item>crocodile</item>
+        <item>hedgehog</item>
+        <item>badger</item>
+        <item>fox</item>
+        <item>sheep</item>
+        <item>cow</item>
+        <item>horse</item>
+        <item>monkey</item>
+        <item>giraffe</item>
+        <item>ostrich</item>
+        <item>kangaroo</item>
+        <item>turtle</item>
+        <item>chameleon</item>
+        <item>elephant</item>
+        <item>dolphin</item>
+        <item>sloth</item>
+        <item>parrot</item>
+        <item>snake</item>
+        <item>lizard</item>
+        <item>toad</item>
+        <item>running</item>
+        <item>summer</item>
+        <item>joy</item>
+        <item>friends</item>
+        <item>laughter</item>
+        <item>night</item>
+        <item>travel</item>
+        <item>spring</item>
+        <item>smile</item>
+        <item>happiness</item>
+        <item>freedom</item>
+        <item>dance</item>
+        <item>dream</item>
+        <item>dawn</item>
+        <item>evening</item>
+        <item>word</item>
+        <item>sunset</item>
+        <item>wave</item>
+        <item>snow</item>
+        <item>milk</item>
+        <item>sound</item>
+        <item>cloud</item>
+        <item>bird</item>
+        <item>tea</item>
+        <item>hare</item>
+        <item>roof</item>
+        <item>door</item>
+        <item>picture</item>
+        <item>informer</item>
+        <item>goose</item>
+        <item>bolt</item>
+        <item>knee</item>
+        <item>throat</item>
+        <item>nose</item>
+        <item>eye</item>
+        <item>pineapple</item>
+        <item>strawberry</item>
+        <item>plum</item>
+        <item>peach</item>
+        <item>apricot</item>
+        <item>worm</item>
+        <item>chicken</item>
+        <item>duck</item>
+        <item>rooster</item>
+        <item>beard</item>
+        <item>eyebrow</item>
+        <item>lobe</item>
+        <item>chin</item>
+        <item>finger</item>
         <item>hand</item>
         <item>head</item>
         <item>person</item>
-        <item>cat</item>
         <item>country</item>
-        <item>ground</item>
-        <item>planet</item>
+        <item>earth</item>
         <item>table</item>
-        <item>chair</item>
         <item>soup</item>
         <item>slab</item>
-        <item>kitchen</item>
         <item>house</item>
         <item>elk</item>
         <item>apartment</item>
-        <item>sky</item>
-        <item>elephant</item>
         <item>people</item>
         <item>society</item>
-        <item>society</item>
-        <item>dog</item>
         <item>keyboard</item>
-        <item>computer</item>
         <item>neighbor</item>
         <item>letter</item>
-        <item>sun</item>
         <item>continent</item>
         <item>film</item>
         <item>serial</item>
@@ -45,81 +284,51 @@
         <item>state</item>
         <item>ruler</item>
         <item>sofa</item>
-        <item>mouse</item>
         <item>cheese</item>
         <item>tomato</item>
         <item>cucumber</item>
-        <item>window</item>
         <item>TV</item>
         <item>number</item>
         <item>hair</item>
-        <item>faucet</item>
         <item>glass</item>
-        <item>airplane</item>
-        <item>leaf</item>
-        <item>snow</item>
-        <item>rain</item>
-        <item>cloud</item>
+        <item>sheet</item>
         <item>wheel</item>
         <item>car</item>
         <item>engine</item>
         <item>pilaf</item>
         <item>screen</item>
-        <item>number</item>
-        <item>letter</item>
         <item>cube</item>
         <item>already</item>
         <item>camera</item>
-        <item>chair</item>
-        <item>water</item>
-        <item>air</item>
         <item>fire</item>
         <item>wall</item>
         <item>ceiling</item>
-        <item>money</item>
         <item>advertising</item>
         <item>fence</item>
-        <item>door</item>
-        <item>glass</item>
         <item>glasses</item>
-        <item>clock</item>
         <item>time</item>
-        <item>word</item>
-        <item>book</item>
         <item>mail</item>
-        <item>music</item>
         <item>video</item>
         <item>photo</item>
         <item>shovel</item>
-        <item>forest</item>
-        <item>roof</item>
-        <item>horse</item>
-        <item>ceiling</item>
-        <item>ladder</item>
-        <item>running</item>
-        <item>ball</item>
-        <item>handle</item>
+        <item>stairs</item>
+        <item>descriptor</item>
         <item>color</item>
         <item>map</item>
         <item>fruit</item>
         <item>vegetable</item>
-        <item>sound</item>
         <item>text</item>
         <item>family</item>
         <item>son</item>
         <item>daughter</item>
         <item>father</item>
-        <item>student</item>
         <item>juice</item>
         <item>prince</item>
-        <item>current</item>
-        <item>paper</item>
         <item>gas</item>
         <item>north</item>
         <item>south</item>
         <item>west</item>
         <item>east</item>
-        <item>river</item>
         <item>program</item>
     </string-array>
 </resources>
