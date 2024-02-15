@@ -30,6 +30,7 @@ public class WordSearchView extends View {
     private int rows;
     private int columns;
     private int width;
+    private boolean isGrid;
 
     private char[][] letters;
     private List<Word> words;
@@ -47,6 +48,7 @@ public class WordSearchView extends View {
     private final Paint textPaintMatch = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint highlighterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint hintPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint gridLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Word hintWord;
 
     private OnWordSearchedListener onWordSearchedListener;
@@ -65,6 +67,10 @@ public class WordSearchView extends View {
         return hintsCount;
     }
 
+    public void setGrid(boolean grid) {
+        isGrid = grid;
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -72,8 +78,6 @@ public class WordSearchView extends View {
         final int pointerIndex = MotionEventCompat.getActionIndex(event);
         final float x = MotionEventCompat.getX(event, pointerIndex);
         final float y = MotionEventCompat.getY(event, pointerIndex);
-
-//        Log.d("WordsGrid", "x:" + x + ", y:" + y);
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             cellDragFrom = getCell(x, y);
@@ -90,7 +94,6 @@ public class WordSearchView extends View {
                 invalidate();
             }
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-//            Log.d("WordsGrid", getWordStr(cellDragFrom, cellDragTo));
             String word = getWordStr(cellDragFrom, cellDragTo);
             if (!highlightIfContain(word)) {
                 for (Cell c : cellList) {
@@ -108,7 +111,7 @@ public class WordSearchView extends View {
 
     public void refresh() {
         wordsSearched = 0;
-        hintsCount =  0;
+        hintsCount = 0;
     }
 
     public void hint() {
@@ -183,6 +186,11 @@ public class WordSearchView extends View {
         hintPaint.setStrokeCap(Paint.Cap.ROUND);
         hintPaint.setColor(hintColor);
 
+        gridLinePaint.setStyle(Paint.Style.STROKE);
+        gridLinePaint.setStrokeWidth(4);
+        gridLinePaint.setStrokeCap(Paint.Cap.SQUARE);
+        gridLinePaint.setColor(0x11000000);
+
     }
 
     @Override
@@ -192,13 +200,15 @@ public class WordSearchView extends View {
             return;
         }
 
-        // draw grid comment on future , maybe enable in settings
-//        for (int i = 0; i < rows - 1; i++) {
-//            canvas.drawLine(0, cells[i][0].getRect().bottom, width, cells[i][0].getRect().bottom, gridLinePaint);
-//        }
-//        for (int i = 0; i < columns - 1; i++) {
-//            canvas.drawLine(cells[0][i].getRect().right, cells[0][0].getRect().top, cells[0][i].getRect().right, cells[columns - 1][0].getRect().bottom, gridLinePaint);
-//        }
+        // draw grid
+        if (isGrid) {
+            for (int i = 0; i < rows - 1; i++) {
+                canvas.drawLine(0, cells[i][0].getRect().bottom, width, cells[i][0].getRect().bottom, gridLinePaint);
+            }
+            for (int i = 0; i < columns - 1; i++) {
+                canvas.drawLine(cells[0][i].getRect().right, cells[0][0].getRect().top, cells[0][i].getRect().right, cells[columns - 1][0].getRect().bottom, gridLinePaint);
+            }
+        }
 
         // draw highlighter
         if (isFromToValid(cellDragFrom, cellDragTo)) {
@@ -346,7 +356,7 @@ public class WordSearchView extends View {
             if (word.getWord().equals(str)) {
                 cellList.clear();
                 if (onWordSearchedListener != null) {
-                    if (!word.isHighlighted())  {
+                    if (!word.isHighlighted()) {
                         wordsSearched++;
                         onWordSearchedListener.wordFound(str, wordsSearched);
                     }

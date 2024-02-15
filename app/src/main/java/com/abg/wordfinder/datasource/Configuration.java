@@ -24,5 +24,25 @@ public class Configuration {
         return pref.getString("locale", LocaleChange.getLocale(context));
     }
 
+    public void saveGrid(boolean isGrid) {
+        pref = context.getSharedPreferences(namePref, Context.MODE_PRIVATE);
+        pref.edit().putBoolean("grid", isGrid).apply();
+    }
+
+    public boolean getGrid() {
+        pref = context.getSharedPreferences(namePref, Context.MODE_PRIVATE);
+        return pref.getBoolean("grid", true);
+    }
+
+    public void saveContrast(boolean isContrast) {
+        pref = context.getSharedPreferences(namePref, Context.MODE_PRIVATE);
+        pref.edit().putBoolean("contrast", isContrast).apply();
+    }
+
+    public boolean getContrast() {
+        pref = context.getSharedPreferences(namePref, Context.MODE_PRIVATE);
+        return pref.getBoolean("contrast", false);
+    }
+
 
 }

@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener, WinDialogFragment.Listener, SettingsDialogFragment.ChangeLanguageListener {
+public class MainActivity extends AppCompatActivity implements WordSearchGenerator.Listener,
+        WinDialogFragment.Listener, SettingsDialogFragment.ChangeLanguageListener, SettingsDialogFragment.SettingsDisplayListener {
 
     private WordSearchGenerator wordSearchGenerator;
     private TextView textViewWordsFound;
@@ -74,9 +76,15 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textViewWordsFound = findViewById(R.id.wordsFound);
 
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+        textViewWordsFound = findViewById(R.id.wordsFound);
         chronometer = findViewById(R.id.secondomer);
+        wordsGrid = findViewById(R.id.wordsGrid);
+        configuration = new Configuration(this);
 
         BannerAdView mBanner = (BannerAdView) findViewById(R.id.adView);
         mBanner.setAdUnitId("R-M-5962296-1");
@@ -84,17 +92,11 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         AdRequest adRequest = new AdRequest.Builder().build();
         mBanner.loadAd(adRequest);
 
-        configuration = new Configuration(this);
+        contrastChange(configuration.getContrast());
+        gridChange(configuration.getGrid());
         LocaleChange.setLocale(this, configuration.getLocale());
 
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         temp = getResources().getStringArray(R.array.words);
-        wordsGrid = findViewById(R.id.wordsGrid);
-
         setUpWordSearch();
 
     }
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void createDialog() {
         SettingsDialogFragment settingsDialogFragment = new SettingsDialogFragment();
         settingsDialogFragment.setListener(this);
+        settingsDialogFragment.setSettingsDisplayListener(this);
         settingsDialogFragment.show(this.getSupportFragmentManager(), "DialogFragment");
     }
 
@@ -151,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void generateWord() {
         words = null;
         words = new ArrayList<>();
-        for (int i = 0; i < temp.length; i++) {
+        for (int i = 0; i < 25; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
             if (!words.contains(s) && s.length() <= row) {
                 words.add(s);
@@ -192,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
                 createDialogWin();
                 wordsGrid.refresh();
             }
-            textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount)+"");
+            textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount) + "");
             TextView v = map.get(word.toLowerCase());
             v.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
             v.setTextColor(Color.GRAY);
@@ -208,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     public void generated(List<String> words) {
         generateTextView(words);
         setSearchWord();
-        textViewWordsFound.setText(wordSearchGenerator.getWords().size()+"");
+        textViewWordsFound.setText(wordSearchGenerator.getWords().size() + "");
         chronometer.start();
     }
 
@@ -222,5 +225,21 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     @Override
     public void change() {
         restart();
+    }
+
+    @Override
+    public void contrastChange(boolean isContrast) {
+        Log.d("$r contrastChange", isContrast+"");
+        if (isContrast) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    @Override
+    public void gridChange(boolean isGrid) {
+        Log.d("$r gridChange", isGrid+"");
+        wordsGrid.setGrid(isGrid);
     }
 }
