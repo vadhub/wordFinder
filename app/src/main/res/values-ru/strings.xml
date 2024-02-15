@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">найди слово</string>
-    <string-array name="words">
+    <string-array name="words" tools:ignore="InconsistentArrays">
         <item>мышь</item>
         <item>кошка</item>
         <item>дерево</item>
@@ -185,7 +185,7 @@
         <item>пингвин</item>
         <item>орел</item>
         <item>крокодил</item>
-        <item>еж</item>
+        <item>ёж</item>
         <item>барсук</item>
         <item>лиса</item>
         <item>овца</item>
@@ -290,7 +290,6 @@
         <item>плов</item>
         <item>экран</item>
         <item>куб</item>
-        <item>уже</item>
         <item>камера</item>
         <item>огонь</item>
         <item>стена</item>

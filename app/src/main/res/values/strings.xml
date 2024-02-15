@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">find the word</string>
     <string name="settings">settings</string>
     <string name="hint">hint</string>
@@ -8,7 +8,7 @@
     <string name="refresh" translatable="false">refresh</string>
     <string name="you_win">You win!</string>
     <string name="restart">Restart?</string>
-    <string-array name="words">
+    <string-array name="words" tools:ignore="InconsistentArrays">
         <item>mouse</item>
         <item>cat</item>
         <item>tree</item>
@@ -40,7 +40,6 @@
         <item>radio</item>
         <item>microwave</item>
         <item>refrigerator</item>
-        <item>vacuum cleaner</item>
         <item>iron</item>
         <item>hairdryer</item>
         <item>shawl</item>
@@ -63,7 +62,6 @@
         <item>table</item>
         <item>chair</item>
         <item>bed</item>
-        <item>bedside table</item>
         <item>wardrobe</item>
         <item>shelf</item>
         <item>wardrobe</item>
@@ -80,11 +78,8 @@
         <item>newspaper</item>
         <item>magazine</item>
         <item>periodical</item>
-        <item>elastic band</item>
         <item>handle</item>
         <item>pencil</item>
-        <item>felt pen</item>
-        <item>pencil case</item>
         <item>notebook</item>
         <item>textbook</item>
         <item>schoolboy</item>
@@ -110,7 +105,6 @@
         <item>moon</item>
         <item>beach</item>
         <item>guitar</item>
-        <item>ice cream</item>
         <item>flower</item>
         <item>bear</item>
         <item>battery</item>
@@ -141,9 +135,7 @@
         <item>monitor</item>
         <item>river</item>
         <item>kettle</item>
-        <item>fur coat</item>
         <item>cartridge</item>
-        <item>frying pan</item>
         <item>ink</item>
         <item>jeans</item>
         <item>wine</item>
@@ -298,7 +290,6 @@
         <item>pilaf</item>
         <item>screen</item>
         <item>cube</item>
-        <item>already</item>
         <item>camera</item>
         <item>fire</item>
         <item>wall</item>
