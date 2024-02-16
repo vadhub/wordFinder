@@ -69,6 +69,7 @@ public class WordSearchView extends View {
 
     public void setGrid(boolean grid) {
         isGrid = grid;
+        invalidate();
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -11,14 +11,16 @@ import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.abg.wordfinder.datasource.Configuration;
 
 import java.util.Locale;
+import java.util.Objects;
 
-public class SettingsDialogFragment extends DialogFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class SettingsDialogFragment extends DialogFragment implements View.OnClickListener {
 
     private Configuration saveConfiguration;
     private ChangeLanguageListener listener;
@@ -31,7 +33,6 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
     }
 
     public interface SettingsDisplayListener {
-        void contrastChange(boolean isContrast);
         void gridChange(boolean isGrid);
     }
 
@@ -53,20 +54,36 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
         showGrid = view.findViewById(R.id.switchGrid);
         showContrast = view.findViewById(R.id.switchContrast);
 
-        showGrid.setOnCheckedChangeListener(this);
-        showContrast.setOnCheckedChangeListener(this);
+        showGrid.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (settingsDisplayListener != null) {
+                settingsDisplayListener.gridChange(isChecked);
+                saveConfiguration.saveGrid(isChecked);
+            }
+        });
+
+        showContrast.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (showContrast.equals(buttonView)) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                saveConfiguration.saveContrast(isChecked);
+            }
+        });
 
         saveConfiguration = new Configuration(view.getContext());
         showGrid.setChecked(saveConfiguration.getGrid());
         showContrast.setChecked(saveConfiguration.getContrast());
 
-        if (LocaleChange.getLocale(view.getContext()).equals("ru")) {
+        if (Objects.equals(saveConfiguration.getLocale(), "ru")) {
             radioButtonRu.setChecked(true);
         } else {
             radioButtonEn.setChecked(true);
         }
 
         radioButtonRu.setOnClickListener(this);
+        radioButtonEn.setOnClickListener(this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setView(view).setPositiveButton("Ok",((dialog, which) -> {
@@ -83,21 +100,12 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
             LocaleChange.setLocale(v.getContext(), Locale.ENGLISH.getLanguage());
             saveConfiguration.saveLocale("en");
             listener.change();
-        } else if (v.getId() == R.id.radioButtonRu) {
+        }
+
+        if (v.getId() == R.id.radioButtonRu) {
             LocaleChange.setLocale(v.getContext(), "ru");
             saveConfiguration.saveLocale("ru");
             listener.change();
-        }
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (showContrast.equals(buttonView)) {
-            settingsDisplayListener.contrastChange(isChecked);
-            saveConfiguration.saveContrast(isChecked);
-        } else if (showGrid.equals(buttonView)) {
-            settingsDisplayListener.gridChange(isChecked);
-            saveConfiguration.saveGrid(isChecked);
         }
     }
 }

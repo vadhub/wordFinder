@@ -329,4 +329,6 @@
     <string name="your_time">"Ваше время: "</string>
     <string name="tips_used">"Подказки: "</string>
     <string name="contrast">Контраст</string>
+    <string name="display">Отображение</string>
+    <string name="grid">Сетка</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.abg.wordfinder;
 
 import android.annotation.SuppressLint;
+import android.app.UiModeManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         AdRequest adRequest = new AdRequest.Builder().build();
         mBanner.loadAd(adRequest);
 
-        contrastChange(configuration.getContrast());
+        changeMode(configuration.getContrast());
         gridChange(configuration.getGrid());
         LocaleChange.setLocale(this, configuration.getLocale());
 
@@ -228,18 +230,16 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     }
 
     @Override
-    public void contrastChange(boolean isContrast) {
-        Log.d("$r contrastChange", isContrast+"");
+    public void gridChange(boolean isGrid) {
+        wordsGrid.setGrid(isGrid);
+    }
+
+    // for start app
+    private void changeMode(boolean isContrast) {
         if (isContrast) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-    }
-
-    @Override
-    public void gridChange(boolean isGrid) {
-        Log.d("$r gridChange", isGrid+"");
-        wordsGrid.setGrid(isGrid);
     }
 }

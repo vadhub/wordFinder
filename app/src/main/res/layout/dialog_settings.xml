@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"/>
 
     <androidx.appcompat.widget.SwitchCompat
+        android:paddingStart="4dp"
         android:id="@+id/switchGrid"
         android:text="@string/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <androidx.appcompat.widget.SwitchCompat
+        android:paddingStart="4dp"
         android:id="@+id/switchContrast"
         android:text="@string/contrast"
         android:layout_width="match_parent"
