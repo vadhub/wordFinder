@@ -323,7 +323,7 @@
     </string-array>
     <string name="settings">Настройки</string>
     <string name="hint">подсказка</string>
-    <string name="change_lang">изменение языка</string>
+    <string name="change_lang">Изменение языка</string>
     <string name="you_win">Вы выиграли!</string>
     <string name="restart">Рестарт?</string>
     <string name="your_time">"Ваше время: "</string>
