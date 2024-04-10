@@ -36,9 +36,10 @@
 
     <Chronometer
         android:id="@+id/secondomer"
+        style="@style/background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/background"
+        android:fontFamily="sans-serif"
         android:paddingStart="8dp"
         android:paddingBottom="24dp"
         android:textAlignment="center"

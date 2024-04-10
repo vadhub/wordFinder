@@ -55,6 +55,7 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
         showContrast = view.findViewById(R.id.switchContrast);
 
         showGrid.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SoundManager.playSwitch();
             if (settingsDisplayListener != null) {
                 settingsDisplayListener.gridChange(isChecked);
                 saveConfiguration.saveGrid(isChecked);
@@ -62,6 +63,7 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
         });
 
         showContrast.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SoundManager.playSwitch();
             if (showContrast.equals(buttonView)) {
                 if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -88,6 +90,7 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setView(view).setPositiveButton("Ok",((dialog, which) -> {
             dialog.dismiss();
+            SoundManager.playCock();
         }));
 
         return builder.create();
@@ -107,5 +110,7 @@ public class SettingsDialogFragment extends DialogFragment implements View.OnCli
             saveConfiguration.saveLocale("ru");
             listener.change();
         }
+
+        SoundManager.playSwitch();
     }
 }

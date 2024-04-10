@@ -1,14 +1,13 @@
 package com.abg.wordfinder;
 
 import android.annotation.SuppressLint;
-import android.app.UiModeManager;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private final int row = 10;
     private final int col = 10;
 
+
 //    private char[][] letters  = {
 //            "АМСМСМАВКЕ".toCharArray(),
 //            "ЙЦУКЕНГШЩМ".toCharArray(),
@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
+        SoundManager soundManager = new SoundManager();
+        soundManager.setUpSounds(this);
+
         textViewWordsFound = findViewById(R.id.wordsFound);
         chronometer = findViewById(R.id.secondomer);
         wordsGrid = findViewById(R.id.wordsGrid);
@@ -113,9 +116,12 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.settings) {
             createDialog();
+            SoundManager.playSettings();
         } else if (item.getItemId() == R.id.hint) {
             wordsGrid.hint();
+            SoundManager.playBell();
         } else if (item.getItemId() == R.id.refresh) {
+            SoundManager.playReset();
             setUpWordSearch();
             restart();
         }
@@ -192,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         wordsGrid.setLetters(wordSearchGenerator.getBoard());
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
+            SoundManager.randomAccessOrAccepted();
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 chronometer.stop();
                 createDialogWin();

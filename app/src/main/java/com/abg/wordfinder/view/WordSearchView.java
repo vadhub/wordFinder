@@ -16,6 +16,7 @@ import android.view.View;
 import androidx.core.view.MotionEventCompat;
 
 import com.abg.wordfinder.R;
+import com.abg.wordfinder.SoundManager;
 import com.abg.wordfinder.model.Cell;
 import com.abg.wordfinder.model.Word;
 
