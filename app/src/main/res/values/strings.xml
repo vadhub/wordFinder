@@ -322,6 +322,14 @@
         <item>west</item>
         <item>east</item>
         <item>program</item>
+        <item>ghost</item>
+        <item>game</item>
+        <item>button</item>
+        <item>voice</item>
+        <item>wife</item>
+        <item>husband</item>
+        <item>child</item>
+        <item>razor</item>
     </string-array>
     <string name="tips_used">"Hints: "</string>
     <string name="contrast">Contrast</string>

@@ -52,6 +52,7 @@ public class WinDialogFragment extends DialogFragment {
         b.setOnClickListener(v -> {
             listener.restart();
             dismiss();
+            SoundManager.playRestartButton();
         });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());

@@ -320,6 +320,14 @@
         <item>восток</item>
         <item>программа</item>
         <item>телега</item>
+        <item>призрак</item>
+        <item>игра</item>
+        <item>кнопка</item>
+        <item>голос</item>
+        <item>жена</item>
+        <item>муж</item>
+        <item>ребенок</item>
+        <item>бритва</item>
     </string-array>
     <string name="settings">Настройки</string>
     <string name="hint">подсказка</string>

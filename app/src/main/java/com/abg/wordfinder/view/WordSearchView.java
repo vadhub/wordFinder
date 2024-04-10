@@ -92,6 +92,7 @@ public class WordSearchView extends View {
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             Cell cell = getCell(x, y);
             if (cell != null && isFromToValid(cellDragFrom, cell)) {
+                SoundManager.playPik();
                 cellDragTo = cell;
                 invalidate();
             }

@@ -13,6 +13,10 @@ public class SoundManager {
     private static int buttonReset;
     private static int accepted;
     private static int access;
+    private static int yes;
+    private static int pik;
+    private static int good;
+    private static int buttonRestart;
 
     public void setUpSounds(Context context) {
         AudioAttributes attributes = new AudioAttributes.Builder()
@@ -27,6 +31,10 @@ public class SoundManager {
         buttonReset = soundPool.load(context, R.raw.tu_ping, 1);
         accepted = soundPool.load(context, R.raw.accepted, 1);
         access = soundPool.load(context, R.raw.access, 1);
+        pik = soundPool.load(context, R.raw.geiger1, 1);
+        yes = soundPool.load(context, R.raw.yes, 1);
+        good = soundPool.load(context, R.raw.good, 1);
+        buttonRestart = soundPool.load(context, R.raw.button7, 1);
     }
 
     public static void playSettings() {
@@ -57,11 +65,31 @@ public class SoundManager {
         play(access);
     }
 
+    public static void playYes() {
+        play(yes);
+    }
+
+    public static void playPik() {
+        play(pik);
+    }
+
+    public static void playRestartButton() {
+        play(buttonRestart);
+    }
+
+    public static void playGood() {
+        play(good);
+    }
+
     public static void randomAccessOrAccepted() {
-        if ((int)(Math.random()*100) % 2 == 0) {
+        int r = (int)(Math.random()*100);
+
+        if (r % 3 == 0) {
             playAccepted();
-        } else {
+        } else if (r % 3 == 1){
             playAccess();
+        } else {
+            playYes();
         }
     }
 

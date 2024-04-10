@@ -8,10 +8,13 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
 
     private WordSearchGenerator wordSearchGenerator;
     private TextView textViewWordsFound;
+    private ImageView ghost;
     private WordSearchView wordsGrid;
     private Chronometer chronometer;
     private Map<String, TextView> map;
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         SoundManager soundManager = new SoundManager();
         soundManager.setUpSounds(this);
 
+        ghost = findViewById(R.id.ghost);
         textViewWordsFound = findViewById(R.id.wordsFound);
         chronometer = findViewById(R.id.secondomer);
         wordsGrid = findViewById(R.id.wordsGrid);
@@ -162,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void generateWord() {
         words = null;
         words = new ArrayList<>();
+        words.add("призрак");
         for (int i = 0; i < 25; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
             if (!words.contains(s) && s.length() <= row) {
@@ -199,9 +205,17 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         wordsGrid.setWords(wordSearchGenerator.getWords());
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
             SoundManager.randomAccessOrAccepted();
+
+            Log.d("ddd", word);
+
+            if (word.equalsIgnoreCase("призрак") || word.equalsIgnoreCase("ghost")) {
+                ghost.setVisibility(View.VISIBLE);
+                Log.d("d","ddddd");
+            }
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 chronometer.stop();
                 createDialogWin();
+                SoundManager.playGood();
                 wordsGrid.refresh();
             }
             textViewWordsFound.setText((wordSearchGenerator.getWords().size() - wordSearchCount) + "");
