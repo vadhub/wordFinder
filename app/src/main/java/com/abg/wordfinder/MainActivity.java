@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
     private void generateWord() {
         words = null;
         words = new ArrayList<>();
-        words.add("призрак");
         for (int i = 0; i < 25; i++) {
             String s = temp[(int) (Math.random() * temp.length)];
             if (!words.contains(s) && s.length() <= row) {
@@ -206,11 +205,8 @@ public class MainActivity extends AppCompatActivity implements WordSearchGenerat
         wordsGrid.setOnWordSearchedListener((word, wordSearchCount) -> {
             SoundManager.randomAccessOrAccepted();
 
-            Log.d("ddd", word);
-
             if (word.equalsIgnoreCase("призрак") || word.equalsIgnoreCase("ghost")) {
                 ghost.setVisibility(View.VISIBLE);
-                Log.d("d","ddddd");
             }
             if (wordSearchCount == wordSearchGenerator.getWords().size()) {
                 chronometer.stop();
