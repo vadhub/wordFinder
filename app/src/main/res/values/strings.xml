@@ -330,6 +330,41 @@
         <item>husband</item>
         <item>child</item>
         <item>razor</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>beast</item>
+        <item>wind</item>
+        <item>speech</item>
+        <item>sleep</item>
+        <item>maintenance</item>
+        <item>short</item>
+        <item>look</item>
+        <item>white</item>
+        <item>red</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>familiar</item>
+        <item>relative</item>
+        <item>wing</item>
+        <item>cookies</item>
+        <item>pie</item>
+        <item>long</item>
+        <item>faith</item>
+        <item>foliage</item>
+        <item>forest</item>
+        <item>guess</item>
+        <item>dust</item>
+        <item>wire</item>
     </string-array>
     <string name="tips_used">"Hints: "</string>
     <string name="contrast">Contrast</string>

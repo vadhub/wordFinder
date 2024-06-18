@@ -328,6 +328,47 @@
         <item>муж</item>
         <item>ребенок</item>
         <item>бритва</item>
+        <item>июнь</item>
+        <item>июль</item>
+        <item>август</item>
+        <item>сентябрь</item>
+        <item>октябрь</item>
+        <item>ноябрь</item>
+        <item>декабрь</item>
+        <item>январь</item>
+        <item>февраль</item>
+        <item>март</item>
+        <item>апрель</item>
+        <item>май</item>
+        <item>птица</item>
+        <item>зверь</item>
+        <item>ночь</item>
+        <item>ветер</item>
+        <item>речь</item>
+        <item>сон</item>
+        <item>ведение</item>
+        <item>короткий</item>
+        <item>облик</item>
+        <item>белый</item>
+        <item>красный</item>
+        <item>желтый</item>
+        <item>стекло</item>
+        <item>зеленый</item>
+        <item>знакомый</item>
+        <item>родственник</item>
+        <item>крыло</item>
+        <item>печенье</item>
+        <item>пирог</item>
+        <item>длинный</item>
+        <item>вера</item>
+        <item>листва</item>
+        <item>лесной</item>
+        <item>гадать</item>
+        <item>огонь</item>
+        <item>вода</item>
+        <item>пыль</item>
+        <item>песок</item>
+        <item>провод</item>
     </string-array>
     <string name="settings">Настройки</string>
     <string name="hint">подсказка</string>
